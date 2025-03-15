@@ -8,7 +8,7 @@ import {initializeSocket} from "./socket.js";
 import { createClient } from 'redis';
 
 const app = express();
-const whitelist = ['http://192.168.201.75:5173','http://localhost:5173','https://mytube-beta-version.vercel.app','https://mytube-beta-version.vercel.app/login','https://mytube-beta-version.vercel.app/','https://mytube-beta-version.vercel.app/setting'];
+const whitelist = [process.env.URL];
 
 const corsOptions = {
   origin: function (origin, callback) {
