@@ -1,0 +1,135 @@
+  .aboutsuser {
+    background-color: #ffffff; /* Deep dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+    margin: 1.5rem 0;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .aboutsuser:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.8);
+  }
+  
+  .description-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff; /* Vibrant accent color */
+    text-align: center;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .descriptionuser {
+    background-color: #1f1f1f; /* Slightly lighter for separation */
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+    word-wrap: break-word; /* Prevents text overflow */
+  }
+  
+  .aboutsuserssub {
+    display: flex;
+    flex-wrap: wrap; /* Makes the content wrap for small screens */
+    gap: 1rem;
+    background-color: #1f1f1f;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    justify-content: space-between;
+  }
+  
+  .subsubinfo, .totalallinfo {
+    flex: 1;
+    min-width: 150px; /* Ensures each block remains visible on small screens */
+    font-size: 1rem;
+  }
+  
+  .stat-label {
+    color: #bb86fc; /* Secondary accent color */
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .stat-value {
+    color: #ffffff; /* Neon green for the numbers */
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+  
+  .aboutsuser {
+    max-height: 80px; /* Default collapsed height */
+    overflow: hidden; /* Hides overflowing content */
+    transition: max-height 2s cubic-bezier(0.25, 1, 0.5, 1); /* Gradual, smooth transition */
+    background-color: #000000; /* Cool dark theme /
+    color: #e0e0e0; /* Readable text color */
+    padding: 1.5rem;
+    border-radius: 8px; /* Rounded corners for style */
+    box-shadow: 0px 4px 10px rgba(173, 173, 173, 0.5); /* Subtle shadow */
+    cursor: pointer; /* Indicates interactivity */
+    font-family: "Arial", sans-serif; /* Clean modern font */
+  }
+  
+  /* Expanded state */
+  .aboutsuser.upsiding {
+    max-height: 700px; /* Adjust to the expected full content height */
+    transition: max-height 5s cubic-bezier(0.25, 1, 0.5, 1); /* Slower and smoother */
+  }
+  
+  /* Optional hover effect */
+  .aboutsuser:hover {
+    background-color: #2b2b3d; /* Slightly lighter on hover */
+    transition: background-color 0.3s ease; /* Smooth hover color transition */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .aboutsuser {
+      padding: 1rem;
+      font-size: 0.9rem; /* Smaller font for narrow screens */
+    }
+  }
+    /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    .aboutsuser {
+      padding: 1rem;
+    }
+  
+    .description-title {
+      font-size: 1.5rem;
+    }
+  
+    .descriptionuser {
+      font-size: 0.9rem;
+      padding: 0.8rem;
+    }
+  
+    .aboutsuserssub {
+      flex-direction: column; /* Stacks blocks vertically on smaller screens */
+      padding: 1rem;
+    }
+  
+    .subsubinfo, .totalallinfo {
+      text-align: left; /* Aligns text for better readability */
+      margin-bottom: 1rem;
+    }
+  
+    .stat-label {
+      font-size: 1rem;
+    }
+  
+    .stat-value {
+      font-size: 1.2rem;
+    }
+  }
+  .lifs{
+    color: white;
+    border: 1px solid white;
+    border-radius: 5rem;
+  }
+  

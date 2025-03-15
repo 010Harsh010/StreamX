@@ -1,0 +1,611 @@
+/* For webkit browsers (Chrome/Safari) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.video-player-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  padding: 10px;
+  padding-top: 3rem;
+  background-color: #000000;
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+.video-container {
+  background-color: #0f0f0f;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  margin: 0px;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+}
+.sidebar-open {
+  margin-left: 250px;
+}
+.sidebar-open .video-player {
+  margin-top: 2rem;
+}
+
+.sidebar-open .suggested-videos {
+  overflow: scroll;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.sidebar-open .video_Controller {
+  margin-top: 0px;
+}
+
+.video_Controller {
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.video-player {
+  width: 100%;
+  max-height: 600px;
+  padding-top: 1rem;
+}
+
+.video-title {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Suggested Videos Sidebar */
+.suggested-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 2rem;
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+
+.suggested-video-card {
+  display: flex;
+  gap: 10px;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  align-items: center;
+  transition: background-color 0.3s;
+  max-height: 150px;
+  padding-right: 2rem;
+}
+
+.suggested-video-card:hover {
+  background-color: #333;
+}
+
+.suggested-videos::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.suggested-cardthumbnail {
+  width: 50%;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.suggested-cardthumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.video-info {
+  display: flex;
+  flex-direction: column;
+}
+.suggested-videocard-info {
+  display: flex;
+  flex-direction: column;
+}
+.video-meta {
+  font-size: 12px;
+  color: #aaa;
+}
+.suggested-videocard-meta {
+  font-size: 12px;
+  color: #aaa;
+}
+.video-header {
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.video-title {
+  font-size: 24px;
+  max-width: 100% !important;
+  margin: 0;
+}
+.suggested-videocard-title {
+  font-size: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: block;
+  max-width: 100%;
+  max-height: 3em; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+
+.video-stats {
+  color: #aaa;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.video-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.user-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  font-weight: bold;
+  margin: 0;
+}
+
+.followers {
+  color: #aaa;
+  font-size: 14px;
+  margin: 0;
+}
+
+.follow-button {
+  background-color: #6a0dad;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background-color 0.3s;
+}
+
+.follow-button:hover {
+  background-color: #7a24c4;
+}
+
+.description {
+  color: #ccc;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: block;
+  max-width: 100%;
+  max-height: 3em; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  margin: 15px 0 0;
+}
+
+/* Action Buttons */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.actions button {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s;
+}
+
+.actions button:hover {
+  background-color: #444;
+}
+
+/* Comments Section */
+.comments-section {
+  margin-top: 20px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+.comments-section::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.comments-section h4 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.comment {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-content p {
+  margin: 0;
+}
+
+.comment-content p:first-child {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ddd;
+}
+
+.comment-content p:first-child span {
+  font-weight: normal;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.comment-content p:last-child {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+  background-color: #444;
+}
+
+.page-info {
+  color: #aaa;
+}
+
+.addcomment {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%; /* Optional: Ensure it stretches full width */
+}
+
+.addcomment label {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  color: white;
+  margin-right: 1rem; /* Space between label and input-button combo */
+}
+
+.addcomment input {
+  flex: 1; /* Ensures input takes up available space */
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #4f4f4f;
+  border-right: none; /* Remove right border to join with the button */
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left side only */
+  background-color: #0e0e0e;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.addcomment input:focus {
+  border-color: #2d2d2d;
+  box-shadow: none; /* Prevents glow overlapping the button */
+}
+
+.addcomment button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #0f0f0f;
+  color: #ddd;
+  border: 1px solid #4f4f4f;
+  border-left: none; /* Remove left border to join with the input */
+  border-radius: 0 5px 5px 0; /* Rounded corners on the right side only */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addcomment button:hover {
+  background-color: #222;
+  border-color: #555;
+}
+
+.addcomment button:active {
+  background-color: #000;
+  transform: scale(0.98);
+}
+.error-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* background-color: #f8d7da;
+  color: #721c24; */
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-box p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.error-box button {
+  background: none;
+  border: none;
+  color: #721c24;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.comment-content{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+.comments-section{
+  overflow:scroll;
+  height: max-content;
+}
+
+.edit-input{
+  width: 80%;
+  height: 1rem;
+}
+.edit-input:input{
+  color: red !important;
+}
+.infinite-scroll-component{
+  overflow: scroll !important;
+}
+
+.innerplaylistbox{
+  display: flex;
+  flex-direction: column;
+}
+.innerplaylistheading{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid white;
+}
+
+.playlistselection{
+  margin-bottom: 0.5rem;
+}
+
+/* Default styles for larger screens */
+.playlistList {
+  position: fixed; 
+  top: 25%;
+  left: 0;
+  width: 20%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 999;
+  overflow: hidden;
+  margin-left: 40%;
+  border: 2px solid purple;
+  border-radius: 2rem;
+}
+
+.innerplaylistbox {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  margin: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.innerplaylistheading {
+  padding: 1rem;
+  border-bottom: 2px solid white;
+}
+
+.innerplaylistlist {
+  font-size: larger;
+}
+
+.playlistselection {
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for medium screens (tablets) */
+
+
+/* Styles for small screens (mobile) */
+@media (max-width: 480px) {
+  .playlistList {
+    width: 90%; /* Almost full width for mobile */
+    height: 70%; /* Taller for mobile */
+    margin-left: 5%; /* Center the playlist */
+    top: 15%;
+  }
+
+  .innerplaylistheading {
+    padding-left: 1rem; /* Minimal padding */
+    font-size: larger; /* Larger heading font size for clarity */
+    text-align: center; /* Center align the text */
+  }
+
+  .innerplaylistlist {
+    font-size: small; /* Smaller font size for compact view */
+  }
+
+  .playlistselection {
+    display: flex;
+    align-items: center;
+    font-size: smaller; /* Smaller text for mobile */
+  }
+
+  .selectboxsubmit button {
+    width: 100%; /* Full width for buttons */
+    font-size: smaller; /* Adjust button font size */
+  }
+}
+.innerplaylistlist{
+  overflow: scroll;
+  height: max-content;
+}
+/* @media (max-width: 480px) {
+  .videoboxleftside{
+    width: 50vw !important;
+    overflow-x: hidden !important;
+    
+  }
+  .video-player{
+    height: 50%;
+  }
+} */
+.suggested-video-card:hover{
+  border: 1px solid white;
+  scale: 1.05;
+}
+.follow-set{
+  background-color: #000000 !important;
+}
+.follow-set{
+  box-shadow: 4px 4px 4px rgba(130, 40, 255, 0.5),
+  -2px 4px 4px rgba(255, 40, 40, 0.5),
+  4px -2px 4px rgba(106, 0, 255, 0.5),
+  -2px -4px 4px rgba(240, 37, 255, 0.705);
+  color: #6a0dad;
+  border: 0.1rem solid #6a0dad; /* Corrected border property */
+  padding: 0.5rem 1rem; /* Optional: Adjust padding for better button appearance */
+  border-radius: 0.5rem; /* Optional: Adds rounded corners */
+  transition: box-shadow 1s ease-in,color 1s ease-in;
+}
+
+.expand-section{
+  /* display: none; */
+  height: 20px;
+  width: 100%;
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+}
+.ttt{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.sideing{
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .extraout{
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: scroll;
+    width: 100% !important;
+    height: 100% !important;
+    border:0 !important;
+    border-right: 0px solid black !important;
+    box-sizing: unset; 
+  }
+  .extraleftest{
+    height: 80% !important;
+  }
+  .video_Controller-new{
+    width: 100% !important;
+    max-height: 500px;
+  }
+  .extrasuggested{
+    height: 20%;
+  }
+  .playlistList {
+    width: 60%; /* Adjust width for tablets */
+    height: 60%; /* Adjust height */
+    margin-left: 20%; /* Center the playlist */
+    top: 20%;
+  }
+  .innerplaylistheading {
+    padding-left: 3rem; /* Reduce padding for smaller screens */
+  }
+
+  .innerplaylistlist {
+    font-size: medium; /* Adjust font size for better readability */
+  }
+  .suggested-videos{
+    font-size: xx-small;
+  }
+  .sideing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

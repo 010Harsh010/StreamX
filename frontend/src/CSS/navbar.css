@@ -1,0 +1,232 @@
+/* Navbar container */
+body{
+  background-color: #000;
+}
+.liveformbar{
+  position: fixed;
+  height: 100%;
+  width: 250px;
+  background: #000;
+  right: 0;
+  top: 68px;
+}
+.navbar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(15, 15, 15);
+    padding: 10px 20px;
+    color: #fff;
+    border-bottom: 2px solid white; /* Set a 2px solid white bottom border */
+    border-radius: 0; /* Remove border radius if you want sharp edges */
+    z-index: 1001;
+  }
+  /* Logo styling */
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .opt{
+    display: none;
+  }
+  
+  @media(max-width:460px){
+    .opt{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 5px;
+    }
+  }
+  .play-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #1e90ff, #ff1493);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .play-icon span {
+    font-size: 10px;
+  }
+  
+  /* Search bar styling */
+  /* .search-bar{
+    width: 20rem;
+    min-width: 5rem;
+  } */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .microphone-active {
+    animation: pulse 1s infinite ease-in-out;
+  }
+  
+  .search-bar input {
+    background-color: #000;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 400px;
+  }
+/* Optional: Focus state for better interactivity */
+.search-bar input:focus {
+    border-color: #007bff; /* Change to a blue color on focus */
+}
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .menu span {
+    cursor: pointer;
+  }
+  
+  .signup-button {
+    background-color: #a57bff;
+    color: #000;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+  }
+  
+  .signup-button a{
+    color: #000;
+    text-decoration: none;
+  }
+  .signup-button:hover {
+    background-color: #936eff;
+  }
+  .logo {
+    cursor: pointer; /* Indicates the logo is clickable */
+  }
+  @media (max-width: 510px) {
+    .menu {
+      display: none !important; /* Ensure it hides on small screens */
+    }
+    .signup-button {
+      display: none !important; /* Hide the signup button */
+    }
+  }
+  .option{
+    height: 120px;
+    width: 250px;
+    padding: 5px;
+    background-color: rgba(9, 9, 9, 0.9);
+    border-radius: 5px;
+    border: 0.5px solid #494949;
+
+  }
+  .option-list{
+    display: flex;
+    flex-direction: column;
+  }
+  .oppstion{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding: 5px;
+    height: 50px;
+    background-color: rgba(16, 16, 16, 0.9);
+  }
+  .oppstion:hover{
+    background-color: rgba(82, 82, 82, 0.9);
+  }
+
+  @keyframes topoptions{
+    0% {
+      transform: translateX(100%);
+    }
+    50%{
+      transform: translateX(0);
+    }
+    100%{
+      transform: translateX(0px);
+    }
+  }
+  .oppstion{
+    animation: topoptions 2s forwards;
+  }
+  @keyframes topmenu{
+    0% {
+      transform: translateY(-100%);
+    }
+    50%{
+      transform: translateY(0);
+    }
+    100%{
+      transform: translateY(0px);
+    }
+  }
+  .option{
+    animation: topmenu 0.5s forwards;
+  }
+
+  @keyframes slide{
+    from{
+      transform: translateX(100%);
+    }
+    to{
+      transform: translateX(0%);
+    }
+  }
+  .notify-card{
+    background-color: rgb(0, 0, 0);
+    color: rgb(204, 204, 204);
+    position:fixed;
+    display:flex;
+    flex-direction: row;
+    bottom: 30px;
+    height: 50px;
+    right: 20px;
+    width: 270px;
+    border-radius: 10px;
+    animation: slide 1s forwards;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 10px 15px 10px rgba(115, 115, 115, 0.3);
+    border: 2px solid black;
+  }
+  .card-inner{
+    display:flex;
+    flex-direction: row;
+    bottom: 30px;
+    height: 50px;
+    right: 20px;
+    width: 270px;
+    border-radius: 10px;
+    animation: slide 1s forwards;
+    overflow: hidden;
+    z-index: 10;
+    margin-top:5px;
+  }

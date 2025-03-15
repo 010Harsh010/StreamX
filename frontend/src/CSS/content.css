@@ -1,0 +1,123 @@
+.usecontainer{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 5 equal columns in each row */
+  gap: 1rem; 
+  margin: 1rem;
+  background-color: black;
+  padding: 1rem; 
+  height: 100%;
+  overflow-y: scroll;
+}
+.usecardbox{
+  height: 13rem !important;
+}
+.play-usecontainer{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* 5 equal columns in each row */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.create button {
+  background-color: transparent;
+  border: 1px solid purple;
+  cursor: pointer;
+}
+.create button:hover{
+  background-color: rgb(12, 12, 12);
+  border: 1px solid white;
+  cursor: pointer;
+}
+.createbutton button{
+  border: 1px solid purple;
+  background-color: transparent;
+}
+.createbutton button:hover{
+  border: 1px solid white;
+}
+.lists{
+  color: white !important;
+  flex-direction: column;
+}
+.coll-playlistlist {
+  overflow-y: auto;
+}
+.playlistvideos, .coll-playlistsinfo, .coll-innerinfo {
+  height: 100%;
+  overflow-y: auto;
+  margin-top: 3rem;
+}
+.coll-playlistlist{
+  margin-top: 3rem;
+}
+
+@media(max-width:460px){
+  .coll-innerbody{
+    margin-left: 0px !important;
+    left:0 !important;
+    padding-left: 0;
+  }
+  .coll-playlistlist{
+    width: 100% !important;
+  }
+}
+
+@media(max-width: 768px){
+  .usecontainer{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .smallerinnerinfo{
+    display: flex !important;
+  }
+  .playlistvideos, .coll-playlistsinfo, .coll-innerinfo {
+    margin-top: 0rem;
+  }
+  .coll-playlistlist{
+    margin-top: 0rem;
+  }
+  .coll-playlistsinfo{
+    display: none;
+    width: 0;
+  }
+  .coll-innerbody{
+    margin-left: 0px !important;
+    left:0 !important;
+    padding-left: 0;
+  }
+}
+
+.custom-infinite-scroll{
+  height: 100vh !important;
+
+}
+.divcard{
+  background-color: black;
+  width: 100%;
+  height: min-content;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.usecardbox{
+  margin: 1rem;
+}
+.smallerinnerinfo{
+  margin-top: 3rem;
+  width: 100%;
+  height: 3.3rem;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+  border-bottom: 1px solid white;
+  margin-bottom: 0.3rem;
+  display: none;
+}
+.buttonsupper button{
+  background-color: transparent;
+  border: 1px solid rgb(130, 42, 245);
+  box-shadow: 2px 2px 2px rgb(130, 42, 245),
+  -2px 2px 2px rgb(130, 42, 245);
+  cursor: pointer;
+}

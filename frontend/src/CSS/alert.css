@@ -1,0 +1,49 @@
+.alert-box {
+    display: flex;
+    background-color: white;
+    color: black;
+    border: 2px solid #ae7aff;
+    border-radius: 2px;
+    flex-direction: row; /* Align icon and text in a row */
+    margin: 10px 0;
+    padding: 1rem;
+    width: 100%; /* Adjust width to be responsive */
+    align-items: center; /* Vertically center the content */
+}
+
+.inner-alert {
+    display: flex;
+    align-items: center; /* Vertically align the icon and text */
+    width: 100%;
+}
+
+.sign {
+    padding: 0.5rem; /* Adjust padding */
+    margin-right: 1rem; /* Space between icon and text */
+    display: flex; /* Ensure the icon container follows flex layout */
+    align-items: center; /* Vertically center the icon */
+}
+
+.alert-content {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0.5rem; /* Reduced padding */
+    font-size: 16px;
+    display: flex; /* Ensure content is flex */
+    align-items: center; /* Vertically center the content */
+}
+
+/* Specific types for alert styling */
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -1,0 +1,606 @@
+.settbarcomponentitem:hover{
+    background-color: rgb(61, 61, 61,0.5);
+    border-radius: 1rem;
+    color: red;
+    border: 1px solid black;
+    transition: color 4s ease;
+}
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #000000;
+  }
+  
+  .sett-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .sett-h2, .sett-h3 {
+    margin: 0;
+  }
+  
+  /* Header Section */
+  .sett-header {
+    position: relative;
+    background-color: #000000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .sett-banner {
+    height: 200px;
+    background: linear-gradient(to right, #f76e72, #7e56d9, #4aaef5);
+  }
+  
+  .settuserinfobox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: transparent;
+  }
+  .sett-avatar {
+    height: 150px;
+    border: 4px solid #000;
+    border-radius: 50%;
+    width: 150px;
+  }
+  
+  .sett-name {
+    padding: 2rem 1rem 1rem;
+    text-align: left;
+  }
+  
+  .sett-view-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #000000;
+    color: #fff;
+    border: 1px solid purple;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 6px 6px 6px rgba(144, 14, 14, 0.5);
+  }
+  .sett-view-btn:hover{
+    background-color: #000;
+    color: rgb(168, 56, 56);
+    transition: color 1s ease;
+  }
+  
+  /* Sections */
+  .sett-section {
+    background-color: #000000;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
+  
+  .sett-section p {
+    color: #aaa;
+  }
+  
+  .sett-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .sett-label {
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  .sett-input, .sett-textarea {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #000000;
+    color: #fff;
+    border: 1px solid #727272;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .sett-input:focus, .sett-textarea:focus {
+    border-color: #8a4af3;
+  }
+  
+  .sett-textarea {
+    resize: none;
+  }
+  
+  .sett-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .sett-cancel-btn, .sett-save-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .sett-cancel-btn {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .sett-save-btn {
+    background-color: #8a4af3;
+    color: #fff;
+  }
+  
+  .sett-save-btn:hover {
+    background-color: #6b38c1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sett-avatar {
+      bottom: -30px;
+      left: 10px;
+      width: 40% !important;
+      height: 80px;
+    }
+  
+    .sett-name {
+      margin-left: 15px;
+      padding-top: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sett-header {
+      text-align: center;
+    }
+  
+    .sett-avatar {
+      position: static;
+      margin: 0 auto;
+      width: 80px;
+      height: 100px !important;
+      margin-top: -40px;
+    }
+  
+    .sett-name {
+      margin-left: 0;
+      padding: 1rem 0;
+      font-size:xx-small ;
+    }
+  
+    .sett-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  /* Header Section */
+.sett-header {
+    background-color: #000000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .sett-banner {
+    height: 200px;
+    background: linear-gradient(to right, #f76e72, #7e56d9, #4aaef5);
+  }
+  
+  .settuserinfobox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    background: transparent;
+    margin-top: -75px;
+    z-index: 2;
+  }
+  .sett-avatar {
+    width: 150px;
+    height: 150px;
+    border: 4px solid #000;
+    border-radius: 50%;
+    top: 75%; 
+    left: 2rem; 
+    z-index: 3;
+  }
+  
+  .sett-name {
+    text-align: left;
+    width: 87%;
+  }
+
+  /* 
+  PASSWORD 
+  */
+  .pass-container {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+  }
+  .pass-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .pass-subtext {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .pass-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pass-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .pass-input {
+    padding: 10px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  
+  .pass-hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: -10px;
+    margin-bottom: 15px;
+  }
+  
+  .pass-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .pass-cancel {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .pass-submit {
+    background-color: #a78bfa;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .pass-cancel:hover {
+    background-color: #555;
+  }
+  
+  .pass-submit:hover {
+    background-color: #8b5cf6;
+  }
+  .settouter{
+    display: flex;
+    flex-direction: row;
+    width:"100%";
+  }
+
+
+  /* 
+  news 
+   */
+   /* General styles */
+.settouter {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.settleft {
+  border-right: 1px solid white;
+  padding-top: 5rem;
+  background-color: black;
+  width: 20%;
+  height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+.settleft.sidebar-collapsed {
+  width: 5%;
+  font-size: 5rem;
+}
+
+.settbarheading {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.settbarcomponent {
+  margin: 3rem 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.settbarcomponentitem {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.settbarcomponentitem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.settbarcomponentitem span {
+  margin-left: 0.8rem;
+}
+
+.settright {
+  width: 80%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.accountbox {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 1rem;
+  padding-top: 4rem;
+  object-fit: cover;
+}
+
+/* Responsive Styles */
+
+/* Tablets and small screens */
+@media screen and (max-width: 1024px) {
+  .settleft {
+    width: 15%; /* Reduce sidebar width */
+  }
+
+  .settouter {
+    margin-left: 0; /* Remove margin for smaller screens */
+  }
+
+  .settright {
+    width: 85%;
+  }
+
+  .settbarcomponent {
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  .settouter {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .settleft {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid white;
+    padding-top: 1rem;
+  }
+
+  .settright {
+    width: 100%;
+    height: calc(100vh - 10rem);
+  }
+
+  .settbarheading {
+    font-size: 1.2rem;
+  }
+  .settbarcomponentitem {
+    margin-bottom: 0.5rem;
+  }
+  .accountbox {
+    padding-top: 2rem;
+  }
+  .barheddingsett{
+    font-size: 0.6rem !important;
+  }
+}
+
+/* Extra small devices (phones) */
+@media screen and (max-width: 480px) {
+  .settbarcomponent {
+    font-size: 0.9rem;
+  }
+
+  .settbarcomponentitem {
+    padding: 0.5rem;
+  }
+
+  .settbarcomponentitem span {
+    display: none; /* Hide text, icons remain */
+  }
+
+  .settleft {
+    padding-top: 0.5rem;
+  }
+
+  .accountbox {
+    padding-top: 1rem;
+    padding: 0.5rem;
+  }
+}
+@media(max-width:1000px){
+  .barheddingsett{
+    font-size: 1rem;
+  }
+}
+@media(max-width:560px){
+  .barheddingsett{
+    display: none;
+  }
+  .iconclassh{
+    min-height: 1rem;
+    min-width: 1rem;
+  }
+}
+@media(max-width:460px){
+  .settouter{
+    margin-left: 0 !important;
+    left: 0 !important;
+  }
+}
+/* General Layout Adjustments */
+.settouter {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+  margin-left: 0;
+}
+
+.settleft {
+  border-right: 1px solid white;
+  padding-top: 5rem;
+  background-color: black;
+  width: 20%;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+.settleft.sidebar-collapsed {
+  width: 5%; /* For a collapsed sidebar */
+}
+
+.settbarcomponentitem {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  height: auto; /* Allow dynamic height for content */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.settright {
+  width: 80%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.accountbox {
+  overflow-y: auto;
+  height: 100%;
+  padding: 1rem;
+  padding-top: 4rem;
+}
+
+/* Sidebar Responsiveness */
+@media screen and (max-width: 768px) {
+  .settleft {
+    width: 25%; /* Adjust sidebar width */
+  }
+
+  .settbarcomponentitem {
+    font-size: 1rem;
+    flex-wrap: wrap; /* Wrap content if it overflows */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .settleft {
+    width: 30%; /* Narrower sidebar for small devices */
+  }
+
+  .settbarcomponentitem {
+    font-size: 0.8rem;
+  }
+
+  .settright {
+    width: 70%; /* Adjust right section width */
+  }
+}
+.sett-photobox{
+  display: flex;
+  position: absolute; 
+  height: 100vh;
+  width: 76%;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  background-color: rgba(27, 27, 27, 0.3);
+  z-index: 99;
+}
+.innerbigphoto{
+  width: 30%;
+  height: 35%;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  z-index: 1000;
+  overflow: auto;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.innerbigphoto img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 1000;
+}
+.sett-photobox2 button{
+  background-color: transparent;
+  border: 1px solid rgb(144, 26, 228);
+  box-shadow: 4px 4px 2px rgba(37, 255, 37, 0.5),
+  -4px 4px 6px rgba(32, 36, 255, 0.5),
+  4px -4px 8px rgba(239, 246, 37, 0.5),
+  -4px -4px 10px rgba(255, 33, 33, 0.5);
+}
+.sett-photobox2 button:hover{
+  color: rgb(255, 0, 0);
+}
+.innerbigphoto input{
+  width: 30%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 1000;
+  background-color: #000;
+  text-align: center;
+  padding-top: 30%;
+  text-overflow: ellipsis;
+}
+.innerbigphoto input:hover{
+  border: 0px solid black;
+  background-color: #000;
+}

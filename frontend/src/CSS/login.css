@@ -1,0 +1,187 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2a2438;
+  }
+  
+  .login-form {
+    width: 300px;
+    padding: 20px;
+    background-color: #dbd8e3;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-button:disabled {
+    background-color: #9e9e9e;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .signup-prompt {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .sub-userinfo{
+    background-color: black !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .channelfollowbuttons button{
+    background-color: black;
+  }
+  .sub-allmemberinfo {
+    background-color: black;
+    height: 100vh;
+    width: 60%;
+    color: white;
+    padding: 1rem;
+    padding-top: 5rem;
+    overflow: scroll;
+}
+.channelfollowbuttons button:hover{
+  border-radius: 1rem;
+  border: 1px solid purple;
+  box-shadow: rgba(149, 59, 194, 0.9);
+  background-color: transparent;
+}
+.sub-inner-sidebar{
+  width: calc(100% -250px) !important; ;
+}
+.sub-userinfo{
+  margin-top: 40%;
+}
+.channelfollowed button{
+  box-shadow:4px 0px 6px rgba(255, 37, 21, 0.9),   /* Right shadow */
+  -4px 1px 2px #5e383fe6,  /* Left shadow */
+  0px 4px 6px rgba(255, 60, 46, 0.9),   /* Bottom shadow */
+  0px -4px 6px rgba(149, 59, 194, 0.9);  /* Top shadow */;
+  border-radius: 1rem !important;
+  border: 1px solid purple !important;
+}
+@media(max-width:460px){
+  .sub-inner{
+    margin-left: 0 !important;
+    left: 0 !important;
+    font-size: xx-small;
+  }
+  .sub-allmemberinfo{
+    width: 100%;
+    object-fit: cover;
+
+  }
+  .channelfollowbuttons{
+    font-size: xx-small;
+    height: 100% !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .channelfollowbuttons button{
+    width: min-content;
+    width: 100%;
+    font-size: xx-small;
+    height:100% !important;
+    overflow: hidden;
+    padding: 5px;
+    display: flex;
+    border: 1px solid rgb(255, 255, 255) !important;
+    box-shadow: 0 0 0 0;
+  }
+  .memberssubinfods{
+    font-size: xx-small;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0;
+    padding: 0;
+  }
+}
+.userbigname{
+  font-size: 4rem;
+  font-weight: bold;
+}
+@media(max-width:700px){
+  
+  .sub-memberinfo{
+    display: none;
+    width: 0;
+  }
+  .sub-allmemberinfo{
+    width: 100%;
+  }
+}
+@media (max-width:1000px){
+  .sub-inner{
+    margin-left: 0 !important;
+    left: 0 !important;
+  }
+  .sub-inner{
+    width: 100% !important;
+  }
+  .sub-inner-sidebar{
+    width: 100% !important;
+  }
+  .sub-userinfo{
+    font-size: smaller !important;
+  }
+  .sub-allmemberinfo{
+    width: 100%;
+  }
+  .userbigname{
+    font-size: 1.5rem;
+  }
+  .sub-userinfo{
+    margin-top: 90%
+  }
+}
+.google-box {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

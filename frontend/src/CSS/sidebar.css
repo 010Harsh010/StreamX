@@ -1,0 +1,126 @@
+/* General Sidebar Styling */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 95%;
+  background-color: rgb(15, 15, 15);
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-bottom: 5%;
+  border-right: 1px solid white;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: scroll;
+}
+
+
+/* List Items */
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.sidebar-list li {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid white;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-list li:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar a:hover {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.sidebar-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.nav-for {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Bottom Section */
+.sidebar-bottom {
+  margin-top: 80%;
+}
+
+/* Media Query for Width < 460px */
+
+.extrasbars{
+  display: none  !important;
+}
+@media (max-width: 460px) {
+  .sidebar {
+    height: 10vh;
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    border-top: 1px solid white;
+    border-right: none;
+    overflow-x: auto;
+  }
+
+  .sidebar-list {
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar-list li {
+    margin: 0;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .sidebar-icon {
+    font-size: 1.5rem;
+  }
+
+  .nav-for {
+    display: none; /* Hide text to make it compact */
+  }
+  .extrasbars{
+    display: block !important;
+  }
+}

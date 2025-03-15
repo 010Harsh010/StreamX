@@ -1,0 +1,193 @@
+/* Container for all tweets */
+.tweet-container {
+    height: 100vh; /* Full screen height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #000000;
+    padding: 10px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+  
+  /* Style for each tweet */
+  .tweet {
+    border-bottom: 1px solid #e2e2e2; /* Bottom border */
+    padding: 16px;
+    background-color: #000000;
+  }
+  
+  /* Header for each tweet (avatar + owner info) */
+  .tweet-header {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Avatar */
+  .tweet-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+  
+  /* Owner info (username, email, etc.) */
+  .tweet-info {
+    flex-grow: 1;
+    width: 100%;
+    /* padding: 10px; */
+    overflow: hidden;
+  }
+  
+  .tweet-owner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tweet-username {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .tweet-date {
+    font-size: 12px;
+    color: #ffffff;
+  }
+  
+  .tweet-email {
+    font-size: 14px;
+    color: #ffffff;
+    margin-top: 5px;
+  }
+  
+  /* Content section */
+  .tweet-content {
+    font-size: 14px;
+    color: #ffffff;
+    margin-top: 10px;
+  }
+  
+  /* Show More/Less Button */
+  .tweet-show-more-btn {
+    color: #38aaf1;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+  .tweet-show-more-btn:hover {
+    color: red;
+    background-color: #000000;
+  }
+  
+  /* Like section */
+  .tweet-likes {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffffff;
+  }
+  .tweet-form {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-left: 2px solid gray;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .inputing{
+    position: fixed;
+    height: 8%;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-left: 2px solid gray;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .tweet-add-icon {
+    height: 100%;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  .icon {
+    cursor: pointer;
+    color: gray;
+  }
+  
+  .tweet-input-container {
+    height: 100%;
+    width: 90%;
+  }
+  
+  .tweet-input-box {
+    height: 90%;
+    border: 2px solid gray;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .tweet-input {
+    width: 95%;
+    height: 100%;
+    font-weight: 500;
+    outline: none;
+    padding-left: 16px;
+    color: gray;
+    border: none;
+  }
+  
+  .tweet-send-button {
+    height: 100%;
+    width: 5%;
+    padding: 4px;
+  }
+  
+  .tweet-send-icon {
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .tweet-image{
+    width: 100%;
+    padding: 10px;
+    max-height: 300px;
+    height: 200px;
+  }
+  .int{
+    height: 100%;
+  }
+  .sample{
+    position: fixed;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    bottom: 8%;
+    left: 0%;
+  }
+  .tweet-content {
+    /* width: 100vw; */
+    word-wrap: break-word;  /* Ensures long words break */
+    overflow-wrap: break-word; /* Alternative for better support */
+    white-space: pre-wrap; /* Preserves new lines and wraps text */
+  }
+  

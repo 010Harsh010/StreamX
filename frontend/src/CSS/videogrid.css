@@ -1,0 +1,206 @@
+.infinite-scroll-component {
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  padding: 20px !important;
+  padding-left: 5px !important;
+}
+
+/* Styling for each video card */
+.video-card {
+  background-color: #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  overflow: hidden;
+  height: 15rem;
+  max-height: 15rem !important;
+}
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.thumbnail {
+  width: 100%;
+  height: 140px;
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+.thumbnail{
+  object-fit: cover;
+  width: 100%;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Video details */
+.video-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Title styling */
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.meta {
+  font-size: 14px;
+  color: #a1a1a1;
+  margin: 5px 0;
+}
+
+.author {
+  font-size: 14px;
+  color: #a1a1a1;
+}
+
+/* General styles for the main container */
+.mainBox {
+  display: flex;
+  transition: all 0.3s ease; /* Smooth transition */
+  
+}
+.content {
+  flex-grow: 1; /* Take up remaining space */
+  padding: 20px;
+  transition: all 0.3s ease; /* Smooth transition for the content */
+  height: 100vh;
+  width: 100%;
+}
+
+/* When the sidebar is visible, reduce the available width for the content */
+.sidebar-open {
+  margin-left: 250px; /* Push content to the right */
+}
+
+.video-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 20px;
+  padding: 20px;
+  background-color: #000;
+  align-items: start;
+  justify-content: center; /* Centers the grid items */
+}
+
+.video-info {
+  display: flex ;
+  padding: 10px;
+  flex-direction: row !important;
+}
+.infinite-scroll-component__outerdiv{
+  width: 100%;
+  height: 100vh;
+}
+.infinite-scroll-component {
+  width: 100%;
+  height: 100vh;
+}
+.custom-infinite-scroll{
+  width: 100%;
+  height: 100vh;
+}
+@media (max-width: 1110px) {
+  .video-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+  }
+}
+
+@media( max-width: 850px ){
+  .video-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+  }
+}
+@media( max-width: 610px ){
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%,15rem));
+  }
+  .sidebar-open{
+    margin-left: 0px !important;
+  }
+  .video-grid{
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media(max-width:540px){
+  .video-card{
+    width: 100%;
+  }
+  .titi{
+    font-size: 12px;
+    width: 50px !important;
+  }
+  .selectingtweet{
+    background-color: #000 !important;
+    font-size: 12px;
+    width: 100% !important;
+    padding: 5px !important;
+  }
+}
+
+.recommendationBox{
+  height: 40px;
+  margin-right: 20px;
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  overflow-y: hidden;
+  gap: 10px;
+  overflow-x: scroll;
+  background-color: transparent;
+}
+.inner-choice{
+  width: max-content;
+  height: 30px;
+  cursor: pointer;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 10px;
+  background-color: rgba(63, 63, 63,0.4);
+  color:white;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.inner-choice:hover{
+  background-color: rgba(63, 63, 63,0.9);
+  color: #c2c2c2;
+}
+.inner-choice:active {
+  background-color: black;
+  color: white;
+}
+.inner-choice:focus {
+  background-color: black;
+  color: white;
+}
+

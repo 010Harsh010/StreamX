@@ -1,0 +1,352 @@
+.videoouter-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(15, 15, 15, 0.6);
+    display: flex;
+    flex-direction: row;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(214, 214, 214);
+    overflow-x: hidden;
+  }
+
+  .volumecontrol {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    height: 50px;
+    width: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Prevent interaction when hidden */
+  }
+  
+  .video-player:hover .volumecontrol {
+    opacity: 1;
+    pointer-events: auto; /* Enable interaction on hover */
+  }
+  
+  
+  .inner-chats{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(33, 33, 33);
+  }
+  .main-content {
+    height: 100%;
+    margin-top: 90px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: hidden;
+  }
+  .comment-text p{
+    font-size: small;
+  }
+  .l-video-container {
+    height: 90%;
+    width: 100%;
+  }
+  .comment-container{
+    height: 85%;
+    width: 30%;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 10px solid white,
+    10px 10px 10px 10px white,
+    10px 10px 10px 10px white,
+    10px 10px 10px 10px white;
+    border: 1px solid rgba(15, 15, 15, 0.6);
+  }
+  
+  .ouetr-commentlive{
+    height: 90%;
+    overflow-y: scroll;
+    margin-top: 10px;
+  }
+.comments-sections{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  overflow: hidden;
+}
+.commentbodys{
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
+  padding: 4px;
+  margin-top: 4px;
+  background-color: #141414;
+}
+.comment-user{
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+.inner-image{
+  border-radius: 10px;
+}
+@keyframes jumping{
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.anime{
+  animation: jumping 2s infinite;
+}
+.live-description{
+  height: 23%;
+  display: flex;
+  flex-direction: column;
+  font-size:small;
+}
+.owner-current{
+  border-radius: 100%;
+}
+.outerlivebox{
+  width: 70%;
+}
+
+@media(max-width:880px){
+  .l-video-container{
+    height: 100%;
+  }
+  .comment-container{
+    width: 30%;
+  }
+  .live-description{
+    font-size: x-small;
+    max-height: max-content;
+  }
+  .live-info{
+    font-size: xx-small;
+  }
+  .nammings{
+    font-size: xx-small;
+  }
+  .video-container{
+    max-height: 500px;
+  }
+}
+@media(max-width:660px){
+  .outerlivebox{
+    height: max-content;
+  }
+    .main-content{
+    flex-direction: column;
+    max-height: max-content;
+    overflow: scroll;
+  }
+  .video-container{
+    padding: 5px;
+  }
+  .live-description{
+    margin-top: 5px;
+  }
+  .innerinfolive{
+    margin-top: 10px;
+  }
+  .control-btn{
+    height: 30px;
+    width: 30px;
+  }
+  .outerlivebox{
+    width: 100%;
+  }
+  .l-video-container{
+    height: max-content;
+  }
+  .comment-container{
+    width: 100%;
+  }
+}
+
+
+
+/* 
+live code
+*/
+
+@keyframes height {
+  from {
+    height: 60px;
+  }
+  to {
+    height: 85%; /* Adjust this value as needed */
+  }
+}
+@keyframes outheight{
+  from{
+    height: 85%;
+  }
+  to{
+    height: 60px;
+  }
+}
+
+
+.recc{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(174, 174, 174, 0.2);
+  margin-top: 40px;
+  background-color: rgba(37, 37, 37, 0.6);
+  animation: outheight 1s forwards;
+}
+.recc-option{
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  animation: height 1.5s forwards;
+}
+
+@keyframes commentsshow{
+  from{
+    height: 0;
+  }
+  to{
+    height: 100%;
+  }
+}
+
+.addcomments {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  margin-top: 1rem;
+  width: 100%; /* Optional: Ensure it stretches full width */
+  animation: commentsshow  5s backwards;
+}
+.addcomments label {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  color: white;
+  margin-right: 1rem; /* Space between label and input-button combo */
+}
+
+.addcomments input {
+  flex: 1; /* Ensures input takes up available space */
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #4f4f4f;
+  border-right: none;/* Remove right border to join with the button */
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left side only */
+  background-color: #0e0e0e;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.addcomments input:focus {
+  border-color: #2d2d2d;
+  box-shadow: none; /* Prevents glow overlapping the button */
+}
+
+.addcomments button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #0f0f0f;
+  color: #ddd;
+  border: 1px solid #4f4f4f;
+  border-left: none; /* Remove left border to join with the input */
+  border-radius: 0 5px 5px 0; /* Rounded corners on the right side only */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addcomments button:hover {
+  background-color: #222;
+  border-color: #555;
+}
+
+.addcomments button:active {
+  background-color: #000;
+  transform: scale(0.98);
+}
+
+@media(max-width:1200px){
+  .suggested-videocard-info{
+    font-size: x-small;
+  }
+  .suggested-videocard-info h4{
+    font-size: small;
+  }
+}
+@media (max-width:900px){
+  .extracss{
+    display: flex;
+    flex-direction: column ;
+    overflow: scroll;
+    height: 100%;
+  }
+  .recc-option{
+    margin-top: 0px;
+  }
+  .recc{
+    margin-top: 0;
+  }
+}
+@media(max-width:660px){
+  .video-player{
+    margin-top: 10px;
+  }
+}
+@media(max-width:480px){
+  .statesnew{
+    display: none;
+  }
+  .livesuggested{
+    display: flex !important;
+    width: 100%;
+  }
+  .recc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.control-btn{
+  cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
+
+}
+.control-btn:hover{
+  scale: 1.2;
+  background-color: #151515;
+}
+.end-call{
+  cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
+}
+
+.end-call:hover{
+  scale: 1.2;
+  background-color: rgb(136, 0, 0);
+}

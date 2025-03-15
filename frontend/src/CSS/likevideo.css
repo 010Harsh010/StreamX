@@ -1,0 +1,490 @@
+.startBody {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  padding: 1rem;
+}
+
+.sidebar-open .startBody {
+  transform: translateX(-300px);
+}
+
+.pageInfo {
+  margin-top: 5rem;
+  width: 35%;
+  margin-left: 3rem;
+  margin-right: 2rem;
+  border: 2px solid white;
+  border-radius: 2rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  position: relative;
+}
+
+.coverInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  /* Space for text */
+}
+
+.coverInfo img {
+  width: 40%;
+  /* Adjust the width to make the image smaller */
+  padding: 1rem;
+  opacity: 0.7;
+  border-radius: 1rem;
+  /* Optional: adds rounded corners to the image */
+}
+
+.totalInfo {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 15%;
+  padding-top: 1rem;
+}
+
+.optionButton {
+  display: flex;
+  height: fit-content;
+}
+
+.optionButton button {
+  margin-top: 1rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: smaller;
+  margin-right: 1rem;
+  background-color: transparent;
+  border-radius: 2rem;
+  border: 1px solid #954ec5;
+}
+
+.likeContentInfo {
+  width: 65%;
+  margin-left: 2rem;
+  /* Adjusted space for text */
+}
+
+.likeContentInfo {
+  margin-top: 5rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: 8%;
+  border-radius: 1rem;
+  border: 2px solid rgb(156, 69, 69);
+  border-left: 0;
+  border-right: 0;
+}
+
+.options button {
+  font-size: 1rem;
+  padding: 3px;
+  height: 1.5rem;
+  margin-right: 1rem;
+  background-color: black;
+}
+
+.contents {
+  padding-top: 1rem;
+}
+
+.divcard {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+  /* Dark background */
+  border-radius: 8px;
+  /* Rounded corners */
+  overflow: hidden;
+  margin: 10px 0;
+  /* Spacing between cards */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  /* Subtle shadow */
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* Animation on hover */
+}
+
+.divcard:hover {
+  transform: scale(1.02);
+  /* Slight zoom on hover */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+  /* Enhanced shadow on hover */
+}
+
+.videoItem {
+  display: flex;
+  align-items: flex-start;
+  /* Align content to the start */
+  background-color: black;
+}
+
+.videoItem:hover {
+  background-color: rgb(9, 9, 9);
+}
+
+.videoThumbnail {
+  width: 160px;
+  /* Thumbnail width */
+  height: 90px;
+  /* Thumbnail height */
+  object-fit: cover;
+  /* Maintain aspect ratio */
+  border-radius: 4px;
+  /* Smooth corners */
+}
+
+.videoDetails {
+  padding: 10px;
+  /* Space around details */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Spread text evenly */
+}
+
+.videoTitle {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  /* Space below title */
+  overflow: hidden;
+  /* Prevent overflow */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.videoChannel {
+  color: #909090;
+  font-size: 0.85rem;
+  margin: 0 0 5px 0;
+  /* Space below channel name */
+}
+
+.videoStats {
+  color: #909090;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.startBody button:hover {
+  color: red;
+}
+
+.sideContent {
+  margin-left: 300px;
+  overflow: hidden;
+}
+
+/* Comments */
+.commentBox {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  align-items: center;
+  justify-items: center;
+  font-size: small;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.commentBox:hover {
+  scale: 1.01;
+  border: 1px solid white;
+}
+
+.imageBox {
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.imageBox img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 4rem;
+}
+
+/*  Scrollable  */
+.likeContentInfo {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 5rem); 
+  overflow: hidden; 
+}
+
+.contents {
+  flex-grow: 1; /* Ensures it expands to fill remaining space */
+  overflow: auto; /* Makes only this block scrollable */
+  padding: 1rem;
+}
+
+.commentslist {
+  max-height: 100%; /* Ensures it doesn't overflow */
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+.divcard:hover{
+  border: 1px solid white;
+}
+
+.usecontent-profile button{
+  background-color: transparent;
+  border: 1px solid purple;
+}
+
+/*  styling for playlist */
+.custom-infinite-scroll {
+  height: 80vh; /* Set a height for the scrollable box */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+/*  playlist  */
+.usecontainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 equal columns in each row */
+  gap: 1rem; 
+  margin: 1rem;
+  background-color: transparent;
+  padding: 1rem; 
+}
+
+.usecardbox {
+  height: 12rem; 
+  background-color: transparent;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.usecardbox:hover {
+  scale: 1.05;
+  transition-delay: 100ms;
+  border: 1px solid white;
+}
+
+.useimg {
+  height: 7rem;
+  background-color: transparent;
+}
+
+.useinfo {
+  background-color: transparent;
+  height: 4.8rem;
+  display: flex;
+}
+
+.useuserprofile {
+  background-color:transparent;
+  height: 4.8rem;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userplaylistinfo {
+  background-color: transparent;
+  width: 80%;
+  padding: 0.2rem;
+}
+
+.useuserprofile img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 5rem;
+}
+
+.useimg img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.usecontent-coverimage img{
+  object-fit:cover;
+}
+.outeredit{
+  display: flex;
+  flex-direction: row !important;
+}
+.useeditformbox{
+  position: absolute; /* Position relative to the viewport */
+  top: 5rem; /* Adjusts the top distance from the screen */
+  left: 50%; /* Move the left edge to the center */
+  transform: translateX(-50%); /* Centers it horizontally */
+  width: 50%; 
+  background-color: transparent; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); 
+  border: 1px solid black;
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  height: 50vh;
+  padding: 20px; 
+  border-radius: 8px; 
+  z-index: 999; 
+  /* justify-content: center; */
+}
+.formsubmitbtn{
+  background-color: transparent;
+  border-radius: 1rem;
+  border: 1px solid purple;
+  box-shadow: 0px 4px 6px rgba(209, 38, 38, 0.9);
+}
+.formsubmitbtn:hover{
+  background-color: transparent;
+  color: purple;
+}
+.formdata{
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgb(112, 112, 112);
+  /* box-shadow: 0px 4px 6px rgba(17, 17, 17, 0.9); */
+}
+.pageInfo{
+  box-shadow: 4px 3px 4px rgba(69, 69, 69, 0.9),
+  -4px 3px 4px rgba(78, 78, 78, 0.9),
+  4px -3px 4px rgba(35, 35, 35, 0.9),
+  -4px -3px 4px rgba(111, 110, 110, 0.9);
+}
+.cancelbox:hover{
+  border-radius: 2rem;
+  background-color: red;
+  border: 1px solid white;
+}
+.coverInfo{
+  height: 60%;
+  min-height: 30%;
+}
+.coverInfo img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  border-bottom: 1px solid wheat;
+  box-shadow: 4px 3px 4px rgba(69, 69, 69, 0.9),
+  -4px 3px 4px rgba(78, 78, 78, 0.9),
+  4px -3px 4px rgba(35, 35, 35, 0.9),
+  -4px -3px 4px rgba(111, 110, 110, 0.9);
+}
+@media (max-width: 1025px){
+  .pageInfo{
+    font-size: 0.7rem;
+  }
+  .optionButton button{
+    font-size: 0.7rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    }
+    .optionButton{
+      display: block;
+    }
+    .options{
+      width: 100%;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+    }
+    .options button{
+      width:min-content !important;
+      font-size: 0.6rem;
+      padding: 0;
+    }
+    .commentslist{
+      font-size: 0.5rem;
+    }
+    .contentBox{
+      font-size: 0.5rem;
+      padding: 0;
+    }
+    .commentBox{
+      margin-right: 0;
+      margin-left: 0;
+      padding: 0;
+    }
+    .deleting{
+      right: -100%  !important;
+    }
+}
+@media (max-width: 780px){
+  .pageInfo{
+    display: none;
+    width: 0;
+  }
+  .likeContentInfo{
+    padding: 0;
+    margin: 0;
+    font-size: smaller;
+    width: 100%;
+  }
+  .lists{
+    width: 100%;
+  }
+  .divcard{
+    width: 100%;
+  }
+  .deleting{
+    right: -80%;
+  }
+}
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.carding {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.videoscarding {
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.deleting {
+  position: absolute;
+  top: 0;
+  right: -30%;  /* Initially hidden off the screen */
+  width: 100px;  /* Adjust size as needed */
+  height: 100%;
+  background-color: red;  /* You can change the background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: right 0.3s ease-in-out; /* Makes sliding effect smooth */
+}
+
+.carding.slide .videoscarding {
+  transform: translateX(-100%); /* Moves the video card offscreen */
+}
+
+.carding.slide .deleting {
+  right: 0; /* Slides the deleting div into view */
+}
+@media (max-width: 780px){
+  .deleting{
+    right: -100%;
+  }
+  .likeContentInfo{
+    margin-top: 5rem;
+  }
+}
