@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 export const SocketContext = createContext(null);
 
 const SocketProvider = ({children}) => {
-    const socket = io("http://localhost:8000");
+    const socket = io("https://streamx-8kxh.onrender.com");
     useEffect(() => {
         socket.on('connect', () => {
             console.log('Connected to server');
