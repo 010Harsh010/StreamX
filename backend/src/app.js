@@ -8,7 +8,7 @@ import { initializeSocket } from "./socket.js";
 import { createClient } from "redis";
 
 const app = express();
-const whitelist = ["http://localhost:5173"];
+const whitelist = [process.env.URL];
 
 const corsOptions = {
   origin: function (origin, callback) {
