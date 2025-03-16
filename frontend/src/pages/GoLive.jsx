@@ -98,7 +98,12 @@ function GoLive() {
 
   const createPeer = (viewerId, stream) => {
     const peer = new RTCPeerConnection({
-      iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+      iceServers: [{ urls: import.meta.env.VITE_STUN_URL }, 
+        { 
+          urls: import.meta.env.VITE_TURN_URL,
+          username: import.meta.env.VITE_USERNAME,
+          credential: import.meta.env.VITE_CREDENTIAL
+        }],
     });
 
     try {
