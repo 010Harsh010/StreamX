@@ -5,6 +5,7 @@ import { User } from "../models/user.model.js";
 import { uploadcloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 import mongoose from "mongoose";
 dotenv.config({ path: "../../.env" });
 import fetch from "node-fetch";
@@ -47,58 +48,6 @@ const sendmessage = asynHandler(async (req, res) => {
       throw new ApiError("Not Gmail Verified Account");
     }
 
-    const emailContent = `Content-Type: text/html; charset="UTF-8"
-MIME-Version: 1.0
-From: ${req.user.email}
-To: ${process.env.HOST_EMAIL.trim()}
-Subject: Enquiry
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Message from MyTube</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-background-color:rgb(255, 255, 255);
-color: #333;
-}
-.container {
-padding: 20px;
-}
-.message {
-margin: 20px 0;
-}
-.footer {
-font-size: 12px;
-color: #777;
-}
-</style>
-</head>
-<body>
-<div class="container">
-<h1>StreamX</h1>
-<p><strong>From:</strong> ${req.user.email}</p>
-<p><strong>To:</strong> ${process.env.HOST_EMAIL.trim()}</p>
-<div class="message">
-<p>${message}</p>
-</div>
-<p>Thanks,<br>The MyTube Team</p>
-<div class="footer">
-&copy; 2024 Stream-X Inc. All rights reserved.
-</div>
-</div>
-</body>
-</html>
-`;
-
-    const { encode: base64_encode } = pkg;
-    const encodedMessage = base64_encode(emailContent)
-      .replace(/\+/g, "-")
-      .replace(/\//g, "_")
-      .replace(/=+$/, "");
     const accessTokenResponse = await fetch(
       `https://oauth2.googleapis.com/token?client_id=${process.env.GOOGLE_CLIENT_ID}&client_secret=${process.env.GOOGLE_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${user.GrantToken}`,
       {
@@ -109,7 +58,7 @@ color: #777;
     );
 
     const newAccessTokenData = await accessTokenResponse.json();
-    console.log("newAccesstokenData",newAccessTokenData);
+    // console.log("newAccesstokenData",newAccessTokenData);
     
     const accessToken = newAccessTokenData.access_token;
 
@@ -117,31 +66,48 @@ color: #777;
       throw new ApiError("Failed to refresh access token");
     }
 
-    const response = await fetch(
-      "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          raw: encodedMessage,
-        }),
-      }
-    );
+    // const response = await fetch(
+    //   "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //     body: JSON.stringify({
+    //       raw: encodedMessage,
+    //     }),
+    //   }
+    // );
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.HOST_EMAIL,
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        refreshToken: newAccessTokenData.refresh_token,
+        accessToken: accessToken,
+      },
+    });
+    const mailOptions = {
+      from: `Your Name <${process.env.HOST_EMAIL}>`,
+      to: `${req.user.email}`,
+      subject: "Help Mail",
+      text: `${message}`,
+    };
 
-    const data = await response.json();
+    const result = await transporter.sendMail(mailOptions);
+    console.log(result);
+    
 
-    if (response.ok) {
+    // const data = await response.json();
+
       return res
         .status(200)
         .json(
           new ApiResponse(200, { data: "Message Sent Successfully" }, "success")
         );
-    } else {
-      throw new ApiError("Unable to send message");
-    }
   } catch (error) {
     console.log(error);
     return res
@@ -218,9 +184,14 @@ const registerUser = asynHandler(async (req, res) => {
   const newAccessTokenData = await accessTokenResponse.json(); // Parse the response to JSON
   const accessToken = newAccessTokenData.access_token;
 
+
   if (!accessToken) {
     throw new ApiError(401, "Failed to fetch new access token");
   }
+
+  
+
+
 
   const userRes = await fetch(
     `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`,
@@ -242,6 +213,46 @@ const registerUser = asynHandler(async (req, res) => {
     await existedUser.save();
     throw new ApiError(409, "user Exist's");
   }
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      type: "OAuth2",
+      user: process.env.HOST_EMAIL,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      refreshToken: newAccessTokenData.refresh_token,
+      accessToken: accessToken,
+    },
+  });
+
+  const mailOptions = {
+    from: `${process.env.EMAIL}`,
+    to: `${email}`,
+    subject: "🎉 Welcome to Our Service! 🚀",
+    html: `
+      <div style="background-color:#f4f4f4; padding:20px; text-align:center; border-radius:10px;">
+        <img src="cid:logo" width="200px" />
+        <h2 style="color:#4CAF50;">Welcome to Our Platform 🎉</h2>
+        <p style="font-size:16px; color:#333;">
+          We're excited to have you! Stay tuned for amazing updates. 🚀
+        </p>
+        <a href="https://streamsx.vercel.app" style="
+           display:inline-block; background-color:#4CAF50; color:white; padding:10px 20px; 
+           text-decoration:none; border-radius:5px; font-size:18px;">
+          Explore Now
+        </a>
+        <p style="color:#888; font-size:12px;">If you did not sign up, please ignore this email.</p>
+      </div>
+    `,
+    attachments: [
+      {
+        filename: "newlogo.png",
+        path: "./public/temp/newlogo.png",
+        cid: "logo",
+      },
+    ],
+  };
+  const result = await transporter.sendMail(mailOptions);
   const avatarLocalpath = req.files?.avatar[0]?.path;
   // const coverimageLocalpath  = req.files?.coverImage[0]?.path;
 
@@ -383,13 +394,28 @@ const logingoogle = asynHandler(async (req, res) => {
     );
 
     const userData = await userRes.json();
+    // console.log("data",userData);
+    
     const { email } = userData;
+    console.log(email);
+    
     const existedUser = await User.findOne({
       email: email,
     });
-
-    existedUser.GrantToken = refreshAccessTokenjson;
-    await existedUser.save();
+    console.log("user",existedUser);
+    
+    if (existedUser?.GrantToken){
+      existedUser.GrantToken = refreshAccessTokenjson;
+      existedUser.save();
+    }else{
+      const user = await User.findOneAndUpdate({
+        email: existedUser?.email,
+      },{
+        GrantToken:refreshAccessTokenjson
+      },{
+        new: true
+      })
+    }
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
       existedUser._id
     );

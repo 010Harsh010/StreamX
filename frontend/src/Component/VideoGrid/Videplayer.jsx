@@ -476,7 +476,9 @@ function VideoPlayer() {
                 className="user-pic"
               />
               <div>
-                <p className="username">{video.owner?.fullName || "Unknown"}</p>
+                <p style={{"cursor":"pointer"}} onClick={()=> {
+                  window.location.href = `/Searchuser/${video?.owner?.username}`
+                }} className="username">{video.owner?.fullName || "Unknown"}</p>
                 <p className="followers">
                   {video.subscribersCount || "0"} Followers
                 </p>
@@ -507,7 +509,7 @@ function VideoPlayer() {
                 )}
               </button>
             </div>
-            <p className="description">
+            <p className="descriptions">
               <span style={{ color: "red" }}>Description : </span>
               {video.description || ""}
             </p>

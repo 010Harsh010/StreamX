@@ -7,6 +7,8 @@ import {asynHandler} from "../utils/asyncHandler.js"
 import {uploadcloudinary,deletecloudVideo} from "../utils/cloudinary.js"
 import { Like } from "../models/like.model.js"
 import {callpython } from "../app.js";
+import fs from "fs"
+
 
 
 const getAllVideos = asynHandler(async (req, res) => {
@@ -174,6 +176,7 @@ const getVideoById = asynHandler(async (req, res) => {
                 "owner.fullName": 1,
                 "owner.avatar": 1,
                 "owner._id":1,
+                "owner.username":1,
                 duration: 1,
                 views: 1,
                 subscribersCount: 1,
@@ -340,7 +343,38 @@ const recommend_list = asynHandler(async (req, res) => {
     try {
         const { videoId, page } = req.body;
         console.log(videoId,page);
-        const response = await callpython(videoId, page,"recommend_videos");
+        let response;
+        const jsonData = JSON.parse(fs.readFileSync("./public/temp/data.json", "utf-8"));
+        // const response = await callpython(videoId, page,"recommend_videos");
+        const similarity_matrix = jsonData.similarity;
+        const videoIdList = jsonData.video_index_mapping;
+        const reverseindex = jsonData.index_to_video_id;
+        
+        // Get the index of the given videoId
+        const index = videoIdList[videoId];
+        
+        if (index === undefined) {
+            throw new Error("Invalid videoId");
+        }
+        
+        // Get similarity scores for the given video
+        const similarity_scores = similarity_matrix[index];
+        // console.log(similarity_scores);
+        
+        // Create an array of videos with their similarity scores
+        const recommendedVideos = Object.entries(videoIdList)
+            .map(([Id, idx]) => ({
+                id: Id,
+                similarity: similarity_scores[idx] || 0, 
+            }))
+            .sort((a, b) => b.similarity - a.similarity); 
+        
+        // Paginate results
+        response = recommendedVideos.slice(page * 10, (page + 1) * 10);
+        
+        // console.log(response);
+        
+        
         if (!response || response.length === 0) {
             throw new Error("No videos found");
         }

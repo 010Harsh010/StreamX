@@ -234,12 +234,14 @@ function Live() {
   }
 
   return (
-    <div
+    <div>
+      harsh
+      <div
       className="video-player-container extracss"
       style={{ overflow: "hidden" }}
     >
       <div
-        className="videoboxleftside "
+        className="videoboxleftside leftother"
         style={{
           display: "flex",
           width: "100%",
@@ -348,7 +350,7 @@ function Live() {
             <h3 style={{ marginTop: "8px" }} className="video-title">
               {roomData?.title || "Undefined"}
             </h3>
-            <p className="description">
+            <p className="descriptions">
               <span style={{ color: "red" }}>Description : </span>
               {roomData?.description || ""}
             </p>
@@ -359,7 +361,7 @@ function Live() {
         suggested side right
       */}
 
-      <div>
+      <div className="hot">
         <div
           className={`${option ? "recc-option" : "recc"}`}
           style={{
@@ -507,7 +509,7 @@ function Live() {
                                           {getTimeDifference(comment.createdAt)}
                                         </span>
                                       </p>
-                                      <p>{comment?.message || ""}</p>
+                                      <p className="text-truncate">{comment?.message || ""}</p>
                                     </div>
                                   </div>
                                 </>
@@ -576,6 +578,7 @@ function Live() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

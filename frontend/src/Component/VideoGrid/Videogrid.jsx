@@ -57,6 +57,7 @@ const VideoGrid = () => {
       setPage((prevPage) => prevPage + 1);
       updateVideoList(response.data[0]);
     } catch (error) {
+      setHasMore(false);
       console.error("Unable to fetch more videos", error);
     } finally {
       setLoading(false);

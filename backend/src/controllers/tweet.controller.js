@@ -169,6 +169,7 @@ const getUserTweets = asynHandler(async (req, res) => {
                 createdAt: 1,
                 "owner.username": "$ownerDetails.username",
                 "owner.avatar": "$ownerDetails.avatar",
+                file:1,
                 likeCount: 1
             }
         }

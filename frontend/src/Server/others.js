@@ -3,6 +3,22 @@ export class others {
     this.baseurl = `${import.meta.env.VITE_SERVER}/api/v1`;
   }
 
+
+  async roomExists({
+    roomId
+  }){
+    const response = await fetch(`${this.baseurl}/live/roomExists`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({roomId:roomId}),
+      mode:"cors",
+      credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  }
   async stremmerData({ roomId }) {
     const response = await fetch(
       `${this.baseurl}/live/streamerData/${roomId}`,

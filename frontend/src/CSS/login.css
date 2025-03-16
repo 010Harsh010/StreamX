@@ -3,13 +3,13 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #2a2438;
+    background-color: #000000;
   }
   
   .login-form {
     width: 300px;
     padding: 20px;
-    background-color: #dbd8e3;
+    background: conic-gradient(rgb(138, 126, 126), rgb(18, 18, 13), rgb(29, 31, 29), rgb(178, 178, 179));
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
@@ -39,7 +39,7 @@
   .login-button {
     width: 100%;
     padding: 10px;
-    background-color: #4caf50;
+    background-color: #2b2e2b;
     color: white;
     border: none;
     border-radius: 4px;
@@ -60,6 +60,10 @@
   .signup-prompt {
     text-align: center;
     margin-top: 10px;
+    color: white;
+  }
+  .heee{
+    color: rgb(35, 125, 163);
   }
   .sub-userinfo{
     background-color: black !important;

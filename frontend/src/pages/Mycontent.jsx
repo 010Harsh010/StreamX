@@ -307,6 +307,8 @@ const Content = () => {
         prevId: currentPrevId,
         userId: owner._id,
       });
+      console.log(response);
+      
       if (!response) {
         throw new Error("Unable to Fetch Tweets");
       }
@@ -408,6 +410,21 @@ const Content = () => {
       setLoading(false);
     }
   };
+  const checkFileType = (fileOrUrl) => {
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    const videoExtensions = [".mp4", ".avi", ".mov", ".mkv", ".webm"];
+
+    // Extract the file extension
+    const extension = fileOrUrl.split(".").pop().toLowerCase();
+
+    if (imageExtensions?.includes(`.${extension}`)) {
+      return "image";
+    } else if (videoExtensions?.includes(`.${extension}`)) {
+      return "video";
+    } else {
+      return "unknown";
+    }
+  };
 
   if (loading) {
     return (
@@ -422,7 +439,7 @@ const Content = () => {
     );
   } else {
     return (
-      <div className="usecontent-bodycontainer">
+      <div className="usecontent-bodycontainers">
         <div className={`usecontent-main ${sidebarVisible && `visibleshift`}`}>
           <div className="usecontent-header" style={{ position: "sticky" }}>
             <div className="usecontent-coverimage">
@@ -475,7 +492,7 @@ const Content = () => {
                             <img src={tweet.owner?.avatar} alt="User" />
                             <div className="usecontent-post-info">
                               <p>
-                                {tweet.owner?.fullName} •{" "}
+                                {tweet.owner?.username} •{" "}
                                 {getTimeDifference(tweet.createdAt)}
                                 <FaEllipsisV
                                   onClick={() => {
@@ -486,9 +503,46 @@ const Content = () => {
                                   className="icon-options"
                                 />
                               </p>
+                      
                               {(tweet._id !== editid || !editable) && (
-                                <p>{tweet.content}</p>
+                                <p className="shownComment">{tweet.content}</p>
                               )}
+                                      {tweet?.file && (
+                      <div className="tweet-imageings">
+                       {tweet?.file && (
+                      <div className="tweet-image">
+                        {checkFileType(tweet?.file) === "image" ? (
+                          <img
+                            className="int"
+                            src={tweet.file}
+                            style={{ objectFit: "cover",width:"300px",height:"300px",borderRadius:0 }}
+                        
+                            alt="tweet-image"
+                          />
+                        ) : checkFileType(tweet?.file) === "video" ? (
+                          <video
+                            className="int"
+                            controls
+                            controlsList="nodownload  noremoteplayback"
+                            style={{ objectFit: "cover",width:"300px",height:"300px",borderRadius:0 }}
+                            
+                            src={tweet?.file}
+                          />
+                        ) : (
+                          <div className="pdf-container">
+                            <iframe
+                            style={{ objectFit: "cover",width:"300px",height:"300px",borderRadius:0 }}
+
+                              src={tweet?.file}
+                              title="PDF Preview"
+                            ></iframe>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                      </div>
+                    )}
+                              
                               {editable && editid === tweet._id && (
                                 <div className="sa-edit-container" style={{display:"flex",flexDirection:"row"}}>
                                   <input
@@ -553,7 +607,7 @@ const Content = () => {
                           style={{ display: "flex", flexDirection: "row","cursor":"pointer" }}
                         >
                           <div
-                            className="videoscarding"
+                            className="videoscarding video-content"
                             style={{ width: "90%" }}
                           >
                             <Searchvideocard
@@ -780,13 +834,14 @@ const Content = () => {
                           {getTimeDifference(channel.cratedAt)}
                         </p>
                         <div
+                        className="changing-content"
                           style={{
                             display: "flex",
                             alignItems: "center",
                             gap: "10px",
                           }}
                         >
-                          <h6 style={{ margin: 0 }}>{channel?.email}</h6>
+                          <h6 className="tituuu" style={{ margin: 0 }}>{channel?.email}</h6>
                           <p style={{ color: "red", margin: 0 }}>
                             {channel?.subscriberCount} Subscribers
                           </p>

@@ -3,22 +3,22 @@ import { createServer } from "http";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import {spawn } from "child_process";
-import {initializeSocket} from "./socket.js";
-import { createClient } from 'redis';
+import { spawn } from "child_process";
+import { initializeSocket } from "./socket.js";
+import { createClient } from "redis";
 
 const app = express();
-const whitelist = [process.env.URL];
+const whitelist = ["http://localhost:5173"];
 
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, 
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -27,7 +27,6 @@ app.use(express.json({ limit: "200mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
-
 
 // Routes
 import userRouter from "./routes/user.routes.js";
@@ -47,41 +46,46 @@ app.use("/api/v1/comments", commentsRouter);
 app.use("/api/v1/user-playlist", playlistRouter);
 app.use("/api/v1/likes", likeRouter);
 app.use("/api/v1/live", liveRouter);
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   return res.send("Welcome to StreamX API");
 });
 
 function callPythonFunction(funcName, args = []) {
-    return new Promise((resolve, reject) => {
-        const python = spawn("python", ["src\\utils\\youtube\\recommendation.py", funcName, ...args]);
+  return new Promise((resolve, reject) => {
+    const python = spawn("python", [
+      "src\\utils\\youtube\\recommendation.py",
+      funcName,
+      ...args,
+    ]);
 
-        let result = "";
-        let error = "";
+    let result = "";
+    let error = "";
 
-        python.stdout.on("data", (data) => {
-            result += data.toString();
-        });
-
-        python.stderr.on("data", (data) => {
-            error += data.toString();
-        });
-
-        python.on("close", (code) => {
-            if (error) {
-                reject(error);
-            } else {
-                try {
-                    resolve(JSON.parse(result)); // Ensure valid JSON response
-                } catch (e) {
-                    reject("Invalid JSON response");
-                }
-            }
-        });
+    python.stdout.on("data", (data) => {
+      result += data.toString();
     });
+
+    python.stderr.on("data", (data) => {
+      error += data.toString();
+    });
+
+    python.on("close", (code) => {
+      if (error) {
+        reject(error);
+      } else {
+        try {
+          resolve(JSON.parse(result)); // Ensure valid JSON response
+        } catch (e) {
+          reject("Invalid JSON response");
+        }
+      }
+    });
+  });
 }
 
 // Example usage
-const callpython  = (getVideoById,lastindex,func) => callPythonFunction(func, [getVideoById,lastindex])
+const callpython = (getVideoById, lastindex, func) =>
+  callPythonFunction(func, [getVideoById, lastindex])
     .then((data) => {
       return data;
     })
@@ -89,13 +93,32 @@ const callpython  = (getVideoById,lastindex,func) => callPythonFunction(func, [g
       return null;
     });
 
-const redisClient = createClient();
+let redisClient;
+let server;
+
 try {
+  redisClient = createClient({
+    username: `${process.env.REDISS_USERNAME}`,
+    password: `${process.env.PASSWORD}`,
+    socket: {
+      host: `${process.env.HOST}`,
+      port: `${process.env.RADISS_PORT}`,
+    },
+  });
+  redisClient.on("error", (err) => {
+    console.error("Redis Error:", err);
+  });
   await redisClient.connect();
+  console.log("Connected to Redis");
 } catch (error) {
   console.log(error.message);
 }
-const server = createServer(app);
-initializeSocket({server});
 
-export { server ,redisClient, callpython };
+try {
+  server = createServer(app);
+  initializeSocket({ server });
+} catch (error) {
+  console.log(error.message);
+}
+
+export { server, redisClient, callpython };

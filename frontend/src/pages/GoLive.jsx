@@ -484,7 +484,7 @@ function GoLive() {
                             </>
                           ) : (
                             <>
-                              <div className="comment-content">
+                              <div className="comment-content description">
                                 <div className="content-info">
                                   <p>
                                     <strong>
@@ -495,12 +495,13 @@ function GoLive() {
                                     </span>
                                   </p>
                                   <div
+                                  className="comment-editing"
                                     style={{
                                       display: "flex",
                                       justifyContent: "end",
                                     }}
                                   >
-                                    <p>{comment?.message || ""}</p>
+                                    <p className="multi-line">{comment?.message || ""}</p>
                                   </div>
                                 </div>
                               </div>

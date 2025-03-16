@@ -114,10 +114,50 @@
   margin-bottom: 0.3rem;
   display: none;
 }
+.usecontent-bodycontainers{
+  color: white;
+}
 .buttonsupper button{
   background-color: transparent;
   border: 1px solid rgb(130, 42, 245);
   box-shadow: 2px 2px 2px rgb(130, 42, 245),
   -2px 2px 2px rgb(130, 42, 245);
   cursor: pointer;
+}
+.tweet-imageings{
+  width: 400px;
+  height: 300px;
+}
+.videoscarding{
+  width: 100px;
+  padding-left: 10px;
+  overflow-wrap: break-word;
+}
+.use-content-followsbutton{
+  margin: 0.5rem;
+ right: 0;
+}
+.usecontent-post{
+  justify-content: space-between;
+}
+
+@media(max-width:600px){
+  .usecontent-post-info{
+    font-size: 10px !important;
+  }
+  .changing-content{
+    font-size: 10px;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .tituuu{
+    font-size: x-small;
+  }
+  .usecontent-post{
+    overflow-x: scroll;
+    font-size: x-small;
+  }
+  .video-content{
+    width: 100vw;
+  }
 }

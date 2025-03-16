@@ -488,3 +488,13 @@
     margin-top: 5rem;
   }
 }
+
+
+
+.shownComment {
+  word-break: break-word;
+}
+.contentBox{
+  max-width: 70%;
+  font-size: 0.5rem;
+}

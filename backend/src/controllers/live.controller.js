@@ -130,7 +130,30 @@ const stremmerData = asynHandler(async (req, res) => {
     }
 });
 
+const roomExists = asynHandler(async (req,res) => {
+    try {
+        const {roomId} = req.body;
+        const room = await Stream.findOne({roomId});
+        console.log(room);
+        
+        if (room){
+            return res.status(200).json(new ApiResponse(200,{
+                room
+            },{
+                message: "Room exists"
+            }))
+        }else{
+            return res.status(404).json(new ApiResponse(404, {}, "Room does not exist"))
+        };
+    } catch (error) {
+        return res.status(404).json(new ApiResponse(404,{},{
+            message: "Room does not exist"
+        }));
+    }
+});
+
 export {
     fetchMessages,
-    stremmerData
+    stremmerData,
+    roomExists
 }

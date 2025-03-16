@@ -76,13 +76,12 @@ const TweetComponent = () => {
     try {
       const response = await other.newTweet({
         content: message,
-        file: fileInputRef.current?.files[0] || null, 
+        file: fileInputRef.current?.files[0] || null,
       });
-      setTweets((prevTweets) => [response.data,...prevTweets]);
+      setTweets((prevTweets) => [response.data, ...prevTweets]);
     } catch (error) {
       console.log(error.message);
-    }
-    finally{
+    } finally {
       setMessage("");
       setSelectedFile(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -120,7 +119,14 @@ const TweetComponent = () => {
             justifyContent: "flex-end",
           }}
         >
-          <Link to="/" style={{ width: "150px", marginRight: "40px" }}>
+          <Link
+            to="/"
+            style={{
+              width: "150px",
+              marginRight: "0px",
+              backgroundColor: "transparent",
+            }}
+          >
             <div
               className="selectingtweet"
               style={{
@@ -153,7 +159,9 @@ const TweetComponent = () => {
                     {/* Owner Info */}
 
                     <div className="tweet-owner">
-                      <h4 className="tweet-username">{tweet?.owner?.username}</h4>
+                      <h4 className="tweet-username">
+                        {tweet?.owner?.username}
+                      </h4>
                       <span className="tweet-date">
                         {new Date(tweet.createdAt).toLocaleString()}
                       </span>
@@ -172,19 +180,19 @@ const TweetComponent = () => {
                           />
                         ) : checkFileType(tweet?.file) === "video" ? (
                           <video
-                            autoPlay
+                            className="int"
+                            controls
+                            controlsList="nodownload  noremoteplayback"
                             style={{ objectFit: "cover" }}
                             src={tweet?.file}
                           />
                         ) : (
-                          <>
+                          <div className="pdf-container">
                             <iframe
                               src={tweet?.file}
-                              width="100%"
-                              height="500px"
                               title="PDF Preview"
                             ></iframe>
-                          </>
+                          </div>
                         )}
                       </div>
                     )}
@@ -275,7 +283,6 @@ const TweetComponent = () => {
     </div>
   );
 };
-
 
 export default function Tweets() {
   return <TweetComponent />;

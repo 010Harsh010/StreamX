@@ -127,6 +127,21 @@ const LikedVideos = () => {
       </div>
     );
   }
+  const checkFileType = (fileOrUrl) => {
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    const videoExtensions = [".mp4", ".avi", ".mov", ".mkv", ".webm"];
+
+    // Extract the file extension
+    const extension = fileOrUrl.split(".").pop().toLowerCase();
+
+    if (imageExtensions?.includes(`.${extension}`)) {
+      return "image";
+    } else if (videoExtensions?.includes(`.${extension}`)) {
+      return "video";
+    } else {
+      return "unknown";
+    }
+  };
 
   return (
     <div className="startBody">
@@ -247,6 +262,34 @@ const LikedVideos = () => {
                           <div className="ownerInfo" style={{ backgroundColor: "transparent" }}>
                             {tweet?.owner?.fullName || "User"}
                           </div>
+                          {tweet?.tweets?.file && (
+                      <div className="tweet-image">
+                        {checkFileType(tweet?.tweets?.file) === "image" ? (
+                          <img
+                            className="int"
+                            src={tweet?.tweets.file}
+                            style={{ objectFit: "cover" }}
+                            alt="tweet-image"
+                          />
+                        ) : checkFileType(tweet?.tweets?.file) === "video" ? (
+                          <video
+                            className="int"
+                            controls
+                            controlsList="nodownload  noremoteplayback"
+                            style={{ objectFit: "cover" }}
+                            src={tweet?.tweets?.file}
+                          />
+                        ) : (
+                          <div className="pdf-container">
+                            <iframe
+                              src={tweet?.tweets?.file}
+                              title="PDF Preview"
+                            ></iframe>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
                           <div className="shownComment" style={{ backgroundColor: "transparent" }}>
                             {tweet?.tweets?.content || ""}
                           </div>

@@ -32,9 +32,11 @@ import { Tooltip, IconButton } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { IoEnterSharp } from "react-icons/io5";
 import { useSidebar } from "../../contextApi/SidebarContext.jsx";
+import { others } from "../../Server/others.js";
 
 function Navbar({ toggleSidebar }) {
   const auth = new AuthService();
+  const other = new others();
   const { sidebarVisible } = useSidebar();
   const { socket } = useContext(SocketContext);
   const dispatch = useDispatch();
@@ -55,6 +57,9 @@ function Navbar({ toggleSidebar }) {
   const [popdata, setPopData] = useState({});
   const [joinroom, setJoinRoom] = useState("");
   const [copied, setCopied] = useState(false);
+
+  
+
 
   const handleCopy = () => {
     if (formData?.roomId) {
@@ -101,14 +106,21 @@ function Navbar({ toggleSidebar }) {
     dispatch(setroomData(formData));
     nav(`/golive/${formData?.roomId}/${isEnabled ? "broadcast" : "private"}`);
   };
-  const onJoin = () => {
-    if (joinroom !== "") {
-      setpopup(false);
-      setEnterForm(false);
-      nav(`/live/${joinroom}`);
-    } else {
-      alert("Please enter a valid Room ID");
-    }
+  const onJoin = async() => {
+   try {
+     if (joinroom !== "") {
+       setpopup(false);
+       setEnterForm(false);
+       const res = await other.roomExists({
+        roomId: joinroom,
+      })
+       nav(`/live/${joinroom}`);
+     } else {
+       alert("Please enter a valid Room ID");
+     }
+   } catch (error) {
+      console.log(error.message);
+   }
   };
 
   const logoutuser = (e) => {

@@ -65,7 +65,11 @@
   font-size: 14px;
   color: #a1a1a1;
 }
+.content{
+  padding: 0  !important;
+  padding-top: 25px !important;
 
+}
 /* General styles for the main container */
 .mainBox {
   display: flex;
@@ -157,6 +161,10 @@
     font-size: 12px;
     width: 100% !important;
     padding: 5px !important;
+  }
+  .content{
+    padding: 0px;
+    padding-top: 20px;
   }
 }
 
