@@ -112,12 +112,14 @@ function Live() {
 
   const createAnswer = async (offer) => {
     peerRef.current = new RTCPeerConnection({
-      iceServers: [{ urls: import.meta.env.VITE_STUN_URL }, 
-        { 
-          urls: import.meta.env.VITE_TURN_URL,
-          username: import.meta.env.VITE_USERNAME,
-          credential: import.meta.env.VITE_CREDENTIAL
-        }],
+      iceServers: [
+        { urls: "stun:stun.l.google.com:19302" }, 
+        { urls: "stun:stun1.l.google.com:19302" }, 
+        { urls: "stun:stun2.l.google.com:19302" }, 
+        { urls: "stun:stun3.l.google.com:19302" }, 
+        { urls: "stun:stun4.l.google.com:19302" },
+        { urls: "turn:numb.viagenie.ca", credential: "muazkh", username: "webrtc@live.com" }
+      ]
     });
 
     peerRef.current.ontrack = (event) => {
