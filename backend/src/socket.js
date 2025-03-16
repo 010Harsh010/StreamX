@@ -9,10 +9,15 @@ import { User } from "./models/user.model.js";
 let io;
 const whitelist = [process.env.URL,"https://streamsx.vercel.app"];
 function initializeSocket({ server }) {
+  console.log("connected socket");
   io = new Server(server, {
     cors: {
       origin: function (origin, callback) {
         if (!origin || whitelist.includes(origin)) {
+          console.log(
+            `Connected to ${origin}, whitelisting...`
+          );
+          
           callback(null, true);
         } else {
           callback(new Error("Not allowed by CORS"));
