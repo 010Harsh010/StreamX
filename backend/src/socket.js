@@ -61,7 +61,7 @@ function initializeSocket({ server }) {
           socket.join(roomId);
           // console.log(`User ${socket.id} streming room ${roomId}`);
           const user =
-            await User.aggregate[
+            await User.aggregate([
               ({
                 $match: { _id: userId },
               },
@@ -73,7 +73,7 @@ function initializeSocket({ server }) {
                   email: 1,
                 },
               })
-            ];
+            ]);
           if (type === "private") {
             //  to subscriber only
           } else {
