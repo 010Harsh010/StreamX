@@ -8,7 +8,7 @@ import { initializeSocket } from "./socket.js";
 import { createClient } from "redis";
 
 const app = express();
-const whitelist = [process.env.URL,"https://streamsx.vercel.app"];
+const whitelist = ["http://localhost:5173","https://streamsx.vercel.app"];
 
 const corsOptions = {
   origin: function (origin, callback) {

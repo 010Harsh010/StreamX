@@ -7,26 +7,30 @@ import { Message } from "./models/message.model.js";
 import { User } from "./models/user.model.js";
 
 let io;
-const whitelist = [process.env.URL,"https://streamsx.vercel.app"];
+const whitelist = ["http://localhost:5173","https://streamsx.vercel.app"];
 function initializeSocket({ server }) {
-  console.log("connected socket");
-  io = new Server(server, {
-    cors: {
-      origin: function (origin, callback) {
-        if (!origin || whitelist.includes(origin)) {
-          console.log(
-            `Connected to ${origin}, whitelisting...`
-          );
-          
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
+  console.log("connecting socket");
+  try {
+    io = new Server(server, {
+      cors: {
+        origin: function (origin, callback) {
+          if (!origin || whitelist.includes(origin)) {
+            console.log(
+              `Connected to ${origin}, whitelisting...`
+            );
+            
+            callback(null, true);
+          } else {
+            callback(new Error("Not allowed by CORS"));
+          }
+        },
+        methods: ["GET", "POST"],
+        credentials:true
       },
-      methods: ["GET", "POST"],
-      credentials:tru
-    },
-  });
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 
   io.on("connection", (socket) => {
     console.log("User connected:", socket.id);
