@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config({ path: './.env' });
 import { Server } from "socket.io";
 import { redisClient } from "./app.js";
 import { Stream } from "./models/Stream.model.js";
@@ -5,11 +7,17 @@ import { Message } from "./models/message.model.js";
 import { User } from "./models/user.model.js";
 
 let io;
-
+const whitelist = [process.env.URL,"https://streamsx.vercel.app"];
 function initializeSocket({ server }) {
   io = new Server(server, {
     cors: {
-      origin: "*",
+      origin: function (origin, callback) {
+        if (!origin || whitelist.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       methods: ["GET", "POST"],
     },
   });
