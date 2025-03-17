@@ -9,8 +9,6 @@ import nodemailer from "nodemailer";
 import mongoose from "mongoose";
 dotenv.config({ path: "../../.env" });
 import fetch from "node-fetch";
-import base64 from "base-64";
-import pkg from "base-64";
 
 const setrefreshtoken = async ({ code }) => {
   try {
@@ -41,8 +39,7 @@ const sendmessage = asynHandler(async (req, res) => {
   try {
     const { message } = req.body;
 
-    const user = await User.findById(req.user._id);
-    console.log(user);
+    const user = await User.findOne({email:process.env.HOST_EMAIL});
     
     if (!user.GrantToken) {
       throw new ApiError("Not Gmail Verified Account");
@@ -65,7 +62,6 @@ const sendmessage = asynHandler(async (req, res) => {
     if (!accessToken) {
       throw new ApiError("Failed to refresh access token");
     }
-
     // const response = await fetch(
     //   "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
     //   {
@@ -91,11 +87,98 @@ const sendmessage = asynHandler(async (req, res) => {
       },
     });
     const mailOptions = {
-      from: `Your Name <${process.env.HOST_EMAIL}>`,
-      to: `${req.user.email}`,
-      subject: "Help Mail",
-      text: `${message}`,
+      from: `${process.env.EMAIL}`,
+      to: `${req.user.email}`, // Assuming this is dynamically set based on the sender
+      subject: "📩 Thank You for Your Message – We’ve Received It!",
+      html: `
+        <div style="background: url('https://via.placeholder.com/700x1200/eee0e5/ffffff?text=Marble+Texture') no-repeat center/cover; padding:40px; font-family:'Playfair Display', serif; color:#333333; max-width:650px; margin:auto; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); position:relative; overflow:hidden;">
+          
+          <!-- Decorative Overlays with Animation -->
+          <div style="position:absolute; top:-30px; left:-30px; width:120px; height:120px; background:linear-gradient(45deg, #4a90e2, #2c3e50); opacity:0.2; border-radius:50%; animation: rotate 20s linear infinite;"></div>
+          <div style="position:absolute; bottom:-20px; right:-20px; width:150px; height:150px; background:linear-gradient(135deg, #4a90e2, #2c3e50); opacity:0.15; border-radius:50%; animation: rotate 25s linear infinite reverse;"></div>
+          <div style="position:absolute; top:50%; left:0; width:50px; height:50px; background:#4a90e2; opacity:0.1; transform:rotate(45deg); animation: rotate 15s linear infinite;"></div>
+    
+          <!-- Header with Logo -->
+          <div style="text-align:center; position:relative; animation: fadeIn 1s ease-in;">
+            <img src="cid:logo" width="150px" style="vertical-align:middle;" />
+            <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:80px; height:3px; background:linear-gradient(90deg, #4a90e2, #2c3e50); border-radius:2px;"></div>
+          </div>
+    
+          <!-- Main Acknowledgment Section -->
+          <div style="background:#ffffff; padding:30px; border-radius:10px; text-align:center; position:relative; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.05); animation: fadeIn 1.2s ease-in;">
+            <div style="position:absolute; top:-20px; left:-20px; width:100px; height:100px; background:linear-gradient(45deg, #4a90e2, #2c3e50); opacity:0.3; border-radius:50%; transform:rotate(20deg);"></div>
+            <h1 style="font-size:36px; color:#4a90e2; margin:0 0 15px; font-weight:600; text-transform:uppercase; letter-spacing:2px; position:relative; display:inline-block;">
+              Message Received
+              <div style="position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:50%; height:2px; background:linear-gradient(90deg, #4a90e2, #2c3e50); opacity:0.5;"></div>
+            </h1>
+            <p style="font-size:18px; color:#555555; line-height:1.6; margin:0 0 25px; font-weight:300;">
+              Thank you for reaching out to StreamX! We’ve successfully received your message and are reviewing it. Below is a copy of what you sent us:
+            </p>
+            <div style="background:#e6f0fa; padding:15px; border-radius:8px; text-align:left; color:#333333; margin:0 0 20px;">
+              <strong>Your Message:</strong><br>
+              <p style="margin:10px 0;">${req.body.message || "No message content provided."}</p> <!-- Dynamic message placeholder -->
+            </div>
+            <p style="font-size:16px; color:#777777; line-height:1.5;">
+              Our team will get back to you as soon as possible. For urgent inquiries, feel free to contact us at support@streamx.com. Thank you for choosing StreamX!
+            </p>
+          </div>
+    
+          <!-- Contact Info Section -->
+          <div style="margin-top:30px; text-align:center; position:relative; animation: fadeIn 1.4s ease-in; background:#2c3e50; padding:20px; border-radius:8px; color:#e6f0fa;">
+            <h3 style="font-size:20px; color:#4a90e2; margin:0 0 15px; font-weight:500; position:relative; display:inline-block;">
+              Stay Connected
+              <div style="position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:50%; height:2px; background:linear-gradient(90deg, #4a90e2, #2c3e50); opacity:0.5;"></div>
+            </h3>
+            <p style="font-size:16px; color:#e6f0fa; line-height:1.5; max-width:500px; margin:0 auto 20px;">
+              Email: <a href="mailto:support@streamx.com" style="color:#4a90e2; text-decoration:none;">support@streamx.com</a><br>
+              Website: <a href="https://streamsx.vercel.app" style="color:#4a90e2; text-decoration:none;">https://streamsx.vercel.app</a>
+            </p>
+          </div>
+    
+          <!-- CTA Button with Pulsing Animation -->
+          <div style="text-align:center; margin-top:30px; animation: fadeIn 1.6s ease-in;">
+            <a href="https://streamsx.vercel.app" style="
+              display:inline-block; background:linear-gradient(90deg, #4a90e2, #2c3e50); color:#ffffff; padding:12px 35px; 
+              text-decoration:none; border-radius:25px; font-size:16px; font-weight:500; 
+              box-shadow:0 4px 15px rgba(74, 144, 226, 0.4); position:relative; overflow:hidden; animation: pulse 2s infinite;">
+              Explore StreamX
+              <div style="position:absolute; top:-20px; left:-20px; width:50px; height:50px; background:#ffffff; opacity:0.1; border-radius:50%;"></div>
+            </a>
+          </div>
+    
+          <!-- Footer -->
+          <div style="font-size:12px; color:#999999; text-align:center; margin-top:30px; position:relative; animation: fadeIn 1.8s ease-in;">
+            If this was sent in error, please ignore this email.
+            <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:60px; height:2px; background:linear-gradient(90deg, #4a90e2, #2c3e50); opacity:0.5;"></div>
+          </div>
+    
+          <!-- CSS Animations -->
+          <style>
+            @keyframes fadeIn {
+              0% { opacity: 0; transform: translateY(10px); }
+              100% { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes rotate {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            @keyframes pulse {
+              0% { box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4); }
+              50% { box-shadow: 0 4px 25px rgba(74, 144, 226, 0.7); }
+              100% { box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4); }
+            }
+          </style>
+        </div>
+      `,
+      attachments: [
+        {
+          filename: "newlogo.png",
+          path: "./public/temp/newlogo.png",
+          cid: "logo",
+        },
+      ],
     };
+    
 
     const result = await transporter.sendMail(mailOptions);
     console.log(result);
@@ -181,14 +264,9 @@ const registerUser = asynHandler(async (req, res) => {
     }
   );
 
-  const newAccessTokenData = await accessTokenResponse.json(); // Parse the response to JSON
+  const newAccessTokenData = await accessTokenResponse.json();
   const accessToken = newAccessTokenData.access_token;
-
-
-  if (!accessToken) {
-    throw new ApiError(401, "Failed to fetch new access token");
-  }
-
+  // console.log(accessToken);
   
 
 
@@ -213,35 +291,165 @@ const registerUser = asynHandler(async (req, res) => {
     await existedUser.save();
     throw new ApiError(409, "user Exist's");
   }
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.HOST_EMAIL,
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken: newAccessTokenData.refresh_token,
-      accessToken: accessToken,
-    },
-  });
-
-  const mailOptions = {
+  
+ try {
+   const host = await User.findOne({
+    email:process.env.HOST_EMAIL
+   });
+     
+     if (!host.GrantToken) {
+       throw new ApiError("Not Gmail Verified Account");
+     }
+ 
+     const hostaccessTokenResponse = await fetch(
+       `https://oauth2.googleapis.com/token?client_id=${process.env.GOOGLE_CLIENT_ID}&client_secret=${process.env.GOOGLE_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${host.GrantToken}`,
+       {
+         method: "POST",
+         mode: "cors",
+         credentials: "include",
+       }
+     );
+ 
+     const hostnewAccessTokenData = await hostaccessTokenResponse.json();
+     // console.log("newAccesstokenData",newAccessTokenData);
+     
+     const hostaccessToken = hostnewAccessTokenData.access_token;
+ 
+     if (!hostaccessToken) {
+       throw new ApiError("Failed to refresh access token");
+     }
+ 
+   const transporter = nodemailer.createTransport({
+     service: "gmail",
+     auth: {
+       type: "OAuth2",
+       user: process.env.HOST_EMAIL,
+       clientId: process.env.GOOGLE_CLIENT_ID,
+       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+       refreshToken: newAccessTokenData.refresh_token,
+       accessToken: hostaccessToken,
+     },
+   });
+ 
+   const mailOptions = {
     from: `${process.env.EMAIL}`,
-    to: `${email}`,
-    subject: "🎉 Welcome to Our Service! 🚀",
+    to: `${req.user.email}`,
+    subject: "🎉 Welcome to StreamX – Dive Into Endless Entertainment!",
     html: `
-      <div style="background-color:#f4f4f4; padding:20px; text-align:center; border-radius:10px;">
-        <img src="cid:logo" width="200px" />
-        <h2 style="color:#4CAF50;">Welcome to Our Platform 🎉</h2>
-        <p style="font-size:16px; color:#333;">
-          We're excited to have you! Stay tuned for amazing updates. 🚀
-        </p>
-        <a href="https://streamsx.vercel.app" style="
-           display:inline-block; background-color:#4CAF50; color:white; padding:10px 20px; 
-           text-decoration:none; border-radius:5px; font-size:18px;">
-          Explore Now
-        </a>
-        <p style="color:#888; font-size:12px;">If you did not sign up, please ignore this email.</p>
+      <div style="background: url('https://via.placeholder.com/700x1200/eee0e5/ffffff?text=Marble+Texture') no-repeat center/cover; padding:40px; font-family:'Playfair Display', serif; color:#333333; max-width:650px; margin:auto; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); position:relative; overflow:hidden;">
+        
+        <!-- Decorative Overlays with Animation -->
+        <div style="position:absolute; top:-30px; left:-30px; width:120px; height:120px; background:linear-gradient(45deg, #95d5b2, #d8f3dc); opacity:0.2; border-radius:50%; animation: rotate 20s linear infinite;"></div>
+        <div style="position:absolute; bottom:-20px; right:-20px; width:150px; height:150px; background:linear-gradient(135deg, #95d5b2, #d8f3dc); opacity:0.15; border-radius:50%; animation: rotate 25s linear infinite reverse;"></div>
+        <div style="position:absolute; top:50%; left:0; width:50px; height:50px; background:#95d5b2; opacity:0.1; transform:rotate(45deg); animation: rotate 15s linear infinite;"></div>
+  
+        <!-- Header with Logo -->
+        <div style="text-align:center; margin-bottom:30px; position:relative; animation: fadeIn 1s ease-in;">
+          <img src="cid:logo" width="150px" style="vertical-align:middle;" />
+          <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:80px; height:3px; background:linear-gradient(90deg, #95d5b2, #d8f3dc); border-radius:2px;"></div>
+        </div>
+  
+        <!-- Main Welcome Section -->
+        <div style="background:#ffffff; padding:30px; border-radius:10px; text-align:center; position:relative; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.05); animation: fadeIn 1.2s ease-in;">
+          <div style="position:absolute; top:-20px; left:-20px; width:100px; height:100px; background:linear-gradient(45deg, #95d5b2, #d8f3dc); opacity:0.3; border-radius:50%; transform:rotate(20deg);"></div>
+          <h1 style="font-size:36px; color:#95d5b2; margin:0 0 15px; font-weight:600; text-transform:uppercase; letter-spacing:2px; position:relative; display:inline-block;">
+            Welcome to StreamX
+            <div style="position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:50%; height:2px; background:linear-gradient(90deg, #95d5b2, #d8f3dc); opacity:0.5;"></div>
+          </h1>
+          <p style="font-size:18px; color:#555555; line-height:1.6; margin:0 0 25px; font-weight:300;">
+            You’ve just joined a community where entertainment knows no bounds. From blockbuster movies to binge-worthy series, StreamX is here to bring joy to your screen with the magic of AI-powered recommendations. Let’s make every moment a masterpiece!
+          </p>
+        </div>
+  
+        <!-- About Section -->
+        <div style="margin-top:30px; text-align:center; position:relative; animation: fadeIn 1.4s ease-in;">
+          <h2 style="font-size:24px; color:#95d5b2; margin:0 0 15px; font-weight:500; position:relative; display:inline-block;">
+            Who We Are
+            <div style="position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:50%; height:2px; background:linear-gradient(90deg, #95d5b2, #d8f3dc); opacity:0.5;"></div>
+          </h2>
+          <p style="font-size:16px; color:#777777; line-height:1.5; max-width:500px; margin:0 auto 20px;">
+            StreamX isn’t just a streaming platform—it’s your personal gateway to a world of stories. We’re passionate about delivering high-quality entertainment, curated just for you, with technology that understands your taste better than ever. Whether you’re a fan of gripping dramas, laugh-out-loud comedies, or thrilling action, we’ve got something to spark your interest.
+          </p>
+        </div>
+  
+        <!-- What We Do Section -->
+        <div style="margin-top:25px; text-align:center; position:relative; animation: fadeIn 1.6s ease-in;">
+          <h3 style="font-size:20px; color:#95d5b2; margin:0 0 20px; font-weight:500; position:relative; display:inline-block;">
+            What We Do
+            <div style="position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:50%; height:2px; background:linear-gradient(90deg, #95d5b2, #d8f3dc); opacity:0.5;"></div>
+          </h3>
+          <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+            <div style="min-width:120px; text-align:center; background:#d8f3dc; padding:15px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); transition:transform 0.3s ease;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="#95d5b2" style="margin:0 auto 10px;">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <p style="font-size:14px; color:#777777; margin:0 0 5px; font-weight:500;">Play</p>
+              <p style="font-size:13px; color:#999999; margin:0;">Stream movies and shows in stunning HD, anytime, anywhere.</p>
+            </div>
+            <div style="min-width:120px; text-align:center; background:#d8f3dc; padding:15px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); transition:transform 0.3s ease;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="#95d5b2" style="margin:0 auto 10px;">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+              <p style="font-size:14px; color:#777777; margin:0 0 5px; font-weight:500;">Discover</p>
+              <p style="font-size:13px; color:#999999; margin:0;">Let our AI find your next favorite watch with ease.</p>
+            </div>
+            <div style="min-width:120px; text-align:center; background:#d8f3dc; padding:15px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); transition:transform 0.3s ease;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="#95d5b2" style="margin:0 auto 10px;">
+                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-7h3v3h-3v-3zm-1-1h-3V9h3v2z"/>
+              </svg>
+              <p style="font-size:14px; color:#777777; margin:0 0 5px; font-weight:500;">Organize</p>
+              <p style="font-size:13px; color:#999999; margin:0;">Build and manage your watchlist with ease.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Why StreamX Section -->
+        <div style="margin-top:30px; text-align:center; position:relative; animation: fadeIn 1.8s ease-in;">
+          <h3 style="font-size:20px; color:#95d5b2; margin:0 0 15px; font-weight:500; position:relative; display:inline-block;">
+            Why StreamX?
+            <div style="position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); width:50%; height:2px; background:linear-gradient(90deg, #95d5b2, #d8f3dc); opacity:0.5;"></div>
+          </h3>
+          <p style="font-size:16px; color:#777777; line-height:1.5; max-width:500px; margin:0 auto 20px;">
+            We’re more than just a platform—we’re your entertainment partner. With cross-device support, seamless streaming, and personalized recommendations, StreamX is designed to make every moment unforgettable. Whether you’re unwinding after a long day or hosting a movie night, we’ve got you covered.
+          </p>
+        </div>
+  
+        <!-- CTA Button with Pulsing Animation -->
+        <div style="text-align:center; margin-top:30px; animation: fadeIn 2s ease-in;">
+          <a href="https://streamsx.vercel.app" style="
+            display:inline-block; background:linear-gradient(90deg, #95d5b2, #d8f3dc); color:#ffffff; padding:12px 35px; 
+            text-decoration:none; border-radius:25px; font-size:16px; font-weight:500; 
+            box-shadow:0 4px 15px rgba(149, 213, 178, 0.4); position:relative; overflow:hidden; animation: pulse 2s infinite;">
+            Start Your Journey
+            <div style="position:absolute; top:-20px; left:-20px; width:50px; height:50px; background:#ffffff; opacity:0.1; border-radius:50%;"></div>
+          </a>
+        </div>
+  
+        <!-- Footer -->
+        <div style="font-size:12px; color:#999999; text-align:center; margin-top:30px; position:relative; animation: fadeIn 2.2s ease-in;">
+          Didn’t mean to join? No worries—just let this email slip away quietly.
+          <div style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:60px; height:2px; background:linear-gradient(90deg, #95d5b2, #d8f3dc); opacity:0.5;"></div>
+        </div>
+  
+        <!-- CSS Animations -->
+        <style>
+          @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(149, 213, 178, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(149, 213, 178, 0.7); }
+            100% { box-shadow: 0 4px 15px rgba(149, 213, 178, 0.4); }
+          }
+          div[style*="transition:transform 0.3s ease"]:hover {
+            transform: scale(1.05);
+          }
+        </style>
       </div>
     `,
     attachments: [
@@ -252,7 +460,13 @@ const registerUser = asynHandler(async (req, res) => {
       },
     ],
   };
-  const result = await transporter.sendMail(mailOptions);
+   const result = await transporter.sendMail(mailOptions);
+ } catch (error) {
+  console.log(error.message);
+    throw new Error(error.message);
+ }
+  // console.log(result);
+  
   const avatarLocalpath = req.files?.avatar[0]?.path;
   // const coverimageLocalpath  = req.files?.coverImage[0]?.path;
 

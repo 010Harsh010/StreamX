@@ -63,7 +63,6 @@ function Login() {
       console.error("Google Login Error:", error);
       setError("Google Login failed. Please try again.");
     },
-    scope: "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/gmail.send",
     flow: "auth-code",
   });
   

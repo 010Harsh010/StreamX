@@ -36,7 +36,7 @@ function Register() {
           authResult,
         });
         console.log("User registered successfully");
-        navigate("/success");
+        navigate("/login");
       } catch (error) {
         console.error("Error during registration:", error);
         setError("Registration failed. Please try again.");
@@ -49,11 +49,9 @@ function Register() {
   const googleLogin = useGoogleLogin({
     onSuccess: responseGoogle,
     onError: (error) => {
-      console.error("Goo.gle Login Error:", error);
+      console.error("Google Login Error:", error);
       setError("Google Login failed. Please try again.");
     },
-    scope:
-      "https://mail.google.com/ https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/userinfo.profile",
     flow: "auth-code",
   });
 
