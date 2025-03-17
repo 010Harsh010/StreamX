@@ -123,7 +123,9 @@ function Live() {
           username: "ef32b324f9fghhghg", 
           credential: "d3f8f0b3" 
         }
-      ]
+      ],
+      iceTransportPolicy: "relay" ,
+      iceCandidatePoolSize: 1 
     });
 
     peerRef.current.ontrack = (event) => {
